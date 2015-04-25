@@ -1,0 +1,13 @@
+Models:
+  Ad (Find better name)
+  User
+  TrackList
+
+Features:
+6
+  1. Anyone can see all ads
+  2. User can log in (via facebook)
+  3. User can post an ad.
+  4. User can keep track of ads in a tracklist
+  5. Users can comment under an add in a facebook manner
+  6. Adds can be organized and found by category
