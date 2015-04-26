@@ -1,8 +1,8 @@
-FactoryGirl.define do  
+FactoryGirl.define do
 
   factory :comment do
     user_id 1
-    advert_id 1
+    advert
     content "MyText"
   end
 

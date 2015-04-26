@@ -9,3 +9,15 @@
 <%= link_to "Verwijder advertentie", advert_path(@advert),
                   method: :delete,
                   data: {confirm: "Ben je zeker? Dit kan niet ongedaan worden."} %>
+
+<div class="comment-section">
+  <h1>Comments</h1>
+  <ul class="comments">
+    <% @advert.comments.each do |comment| %>
+      <li class="comment" id="comment_<%= comment.id %>">
+        <p class="comment-content"><%= comment.content %></p>
+        <small class="comment-timetag"><%= time_ago_in_words comment.created_at %> ago</small>
+      </li>
+    <% end %>
+  </ul>
+</div>

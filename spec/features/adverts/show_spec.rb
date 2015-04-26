@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "advert page", type: :feature do
 
-  let!(:advert) { FactoryGirl.create(:advert) }
+  let!(:advert) { create(:advert) }
   before { visit advert_path(advert) }
 
   it "shows the correct advert" do
