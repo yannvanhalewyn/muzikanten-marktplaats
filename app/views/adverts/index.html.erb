@@ -1,8 +1,12 @@
 <%= link_to "Plaats Advertentie", new_advert_path %>
 <h1>Adverts</h1>
-<% @adverts.each do |advert| %>
-  <div id="advert_<%= advert.id %>" class="advert-listing">
-    <h2><%= link_to advert.title, advert_path(advert) %></h2>
-    <p><%= advert.description %></p>
-  </div>
-<% end %>
+<ul class="adverts">
+  <% @adverts.each do |advert| %>
+    <li id="advert_<%= advert.id %>" class="advert-listing">
+      <%= link_to advert_path(advert) do %>
+        <h2><%= advert.title %></h2>
+        <p><%= advert.description %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
