@@ -12,11 +12,18 @@
 
 <div class="comment-section">
   <h1>Comments</h1>
+
+  <% if @advert.comments.empty? %>
+    <p>Er zijn nog geen reacties geplaatst op deze advertentie. Plaats als eerste een comment!</p>
+  <% end %>
+
   <ul class="comments">
-    <% @advert.comments.each do |comment| %>
+    <% @advert.comments.order(:created_at).each do |comment| %>
       <li class="comment" id="comment_<%= comment.id %>">
-        <p class="comment-content"><%= comment.content %></p>
-        <small class="comment-timetag"><%= time_ago_in_words comment.created_at %> ago</small>
+        <p class="comment-content">
+        <%= comment.content %><br>
+          <small class="comment-timetag"><%= time_ago_in_words comment.created_at %> ago</small>
+        </p>
       </li>
     <% end %>
   </ul>
