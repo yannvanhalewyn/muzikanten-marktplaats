@@ -1,7 +1,4 @@
 FactoryGirl.define do  
-  factory :user do
-    
-  end
 
   factory :advert do
     title "A valid advert title"
