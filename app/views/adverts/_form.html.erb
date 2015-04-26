@@ -1,0 +1,12 @@
+<%= form_for @advert do |form| %>
+  <%= form.label :title, "Titel" %><br>
+  <%= form.text_field :title %><br>
+
+  <%= form.label :description, "Beschrijving" %><br>
+  <%= form.text_area :description %><br>
+
+  <%= form.label :price, "Richt Prijs" %><br>
+  <%= form.text_field :price %><br>
+
+  <%= form.submit "Opslaan" %>
+<% end %>

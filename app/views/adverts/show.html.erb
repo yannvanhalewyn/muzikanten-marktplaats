@@ -1,0 +1,11 @@
+<h1 class="advert-title"><%= @advert.title %></h1>
+<p><%= @advert.description %></p>
+<% if @advert.price %>
+  <p>Richtprijs: <%= number_to_currency(@advert.price, unit: "€") %></p>
+<% else %>
+  <p>Prijs is niet gespecifiëerd</p>
+<% end %>
+<%= link_to "Bewerk advertentie", edit_advert_path(@advert) %>
+<%= link_to "Verwijder advertentie", advert_path(@advert),
+                  method: :delete,
+                  data: {confirm: "Ben je zeker? Dit kan niet ongedaan worden."} %>
