@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   root to: "adverts#index"
-  resources :adverts
+  resources :adverts do
+    resources :comments
+    #post 'comments' => 'comments#create'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

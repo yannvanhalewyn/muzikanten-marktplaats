@@ -29,8 +29,9 @@
   </ul>
 
   <!-- new comment form -->
-  <%= form_for @advert.comments.new do |form| %>
-    
+  <%= form_for [@advert, @advert.comments.new] do |form| %>
+    <%= form.text_area :content %>
+    <%= form.submit "Plaats Comment" %>
   <% end %>
 
 </div>
