@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   add_flash_types :success, :error
+
+  #before_filter :show_flash
+
+  def show_flash
+    flash[:success] = "success"
+    flash[:error] = "error"
+    flash[:notice] = "notice"
+  end
 end

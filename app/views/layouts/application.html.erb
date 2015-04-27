@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>MuzMarktplaats</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Must do this for DEVISE -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-<% flash.each do |type, message| %>
-  <div class="flash-<%= type %>">
-    <%= message %>
-  </div>
-<% end %>
-<%= yield %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-</body>
+  <body>
+
+    <%= render partial: 'layouts/flash' %>
+
+    <%= render partial: 'layouts/header' %>
+
+
+    <div class="row collapse">
+      <div class="small-12 small-centered columns">
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render partial: 'layouts/footer' %>
+
+  </body>
 </html>

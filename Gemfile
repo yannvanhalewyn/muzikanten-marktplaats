@@ -37,6 +37,9 @@ gem 'devise', '~> 3.4.1'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-facebook', '~> 2.0.1'
 
+# Foundation
+gem 'foundation-rails', '~> 5.5.1.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

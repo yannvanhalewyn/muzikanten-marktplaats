@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
+
+//I think uncommenting this fixes some kind of turbo link problem (copied
+//from odot)
+//$(document).on("page:load", function() { $(document).foundation(); });
