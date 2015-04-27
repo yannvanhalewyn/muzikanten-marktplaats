@@ -12,6 +12,18 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <a href="<%= current_user.fb_profile_url %>">
+      <img src="<%= current_user.image %>">
+    </a>
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
+</div>
+
 <% flash.each do |type, message| %>
   <div class="flash-<%= type %>">
     <%= message %>

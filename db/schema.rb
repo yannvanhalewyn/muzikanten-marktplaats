@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426194723) do
+ActiveRecord::Schema.define(version: 20150427200219) do
 
   create_table "adverts", force: :cascade do |t|
     t.string   "title"
@@ -32,5 +32,20 @@ ActiveRecord::Schema.define(version: 20150426194723) do
 
   add_index "comments", ["advert_id"], name: "index_comments_on_advert_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "image"
+    t.string   "fb_profile_url"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
 end
