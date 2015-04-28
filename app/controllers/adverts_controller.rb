@@ -13,7 +13,13 @@ class AdvertsController < ApplicationController
   end
 
   def create
-    advert = Advert.new(advert_params)
+    @user = current_user
+    if !@user
+      redirect_to root_path, error: "Je moet ingelogd zijn om een advertentie te plaatsen"
+      return
+    end
+
+    advert = @user.adverts.new(advert_params)
     if advert.save
       redirect_to advert_path(advert), success: "Je advertentie is geplaatst!"
     else

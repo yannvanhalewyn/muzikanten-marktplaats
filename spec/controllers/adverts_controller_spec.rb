@@ -50,7 +50,20 @@ RSpec.describe AdvertsController, type: :controller do
   end
 
   describe "POST create" do
-    describe "with valid params" do
+    context "with no logged in user" do
+      before { post :create, {advert: attributes_for(:advert)}}
+      it "redirects to the root page" do
+        expect(response).to redirect_to root_path
+      end
+      it "sets an error message" do
+        expect(flash[:error]).to have_content(/je moet ingelogd zijn/i)
+      end
+    end
+
+    context "with valid params" do
+      let(:user) { create(:user) }
+      before { sign_in user }
+
       def validPostRequest
         post :create, {:advert => attributes_for(:advert)}
       end
@@ -69,7 +82,10 @@ RSpec.describe AdvertsController, type: :controller do
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
+      let(:user) { create(:user) }
+      before { sign_in user }
+
       def invalidPostRequest
         post :create, {:advert => {title: "", description: "invalid", price: "20" }}
       end

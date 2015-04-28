@@ -41,5 +41,6 @@ RSpec.configure do |config|
   }
 
   config.include AuthenticationHelpers::Feature, type: :feature
+  config.include AuthenticationHelpers::Controller, type: :controller
 end
 
