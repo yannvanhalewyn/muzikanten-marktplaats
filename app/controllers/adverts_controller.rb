@@ -2,6 +2,8 @@ class AdvertsController < ApplicationController
 
   before_action :require_user, only: [:create, :new]
   before_action :find_advert, only: [:show, :edit, :update, :destroy]
+  before_action :require_author, only: [:update, :destroy]
+
 
   def index
     @adverts = Advert.all
@@ -47,5 +49,11 @@ class AdvertsController < ApplicationController
 
   def find_advert
     @advert = Advert.find(params[:id])
+  end
+
+  def require_author
+    if !current_user || current_user != @advert.user
+      redirect_to root_path and return
+    end
   end
 end

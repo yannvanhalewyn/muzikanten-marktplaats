@@ -119,10 +119,26 @@ RSpec.describe AdvertsController, type: :controller do
   end
 
   describe "PUT update" do
+
+    it "fails when no user logged in" do
+      advert = create(:advert)
+      put :update, {id: advert.to_param, advert: attributes_for(:advert)}
+      expect(response).to redirect_to(root_path)
+    end
+
+    it "fails when logged in user is not the author" do
+      advert = create(:advert)
+      new_user = create(:user)
+      sign_in new_user
+      put :update, {id: advert.to_param, advert: attributes_for(:advert)}
+      expect(response).to redirect_to(root_path)
+    end
+
     describe "with valid params" do
       before(:each) do
         new_params = { title: "New Title", price: 200}
         @advert = create(:advert)
+        sign_in @advert.user
         put :update, {id: @advert.to_param, advert: new_params}
         @advert.reload
       end
@@ -141,6 +157,7 @@ RSpec.describe AdvertsController, type: :controller do
       before(:each) do
         new_params = { title: "", price: 200}
         @advert = create(:advert)
+        sign_in @advert.user
         put :update, {id: @advert.to_param, advert: new_params}
         @advert.reload
       end
@@ -150,24 +167,43 @@ RSpec.describe AdvertsController, type: :controller do
       end
 
       it "redirects the advert to the edit path" do
-
+        expect(response).to redirect_to(edit_advert_path(@advert))
       end
     end
   end
 
   describe "DELETE destroy" do
+
+    let!(:advert) { create(:advert) }
     def destroyAdvert(advert)
       delete :destroy, {id: advert.to_param}
     end
-    it "deletes the advert from the database" do
-      advert = create(:advert)
-      expect {destroyAdvert(advert)}.to change(Advert, :count).by(-1)
+
+    context "without author" do
+      it "redirects to root when not logged in" do
+        sign_in create(:user)
+        destroyAdvert advert
+        expect(response).to redirect_to root_path
+      end
+      it "doesn't delete the advert" do
+        sign_in create(:user)
+        expect{destroyAdvert(advert)}.to_not change(Advert, :count)
+      end
     end
 
-    it "displays a success message" do
-      advert = create(:advert)
-      destroyAdvert(advert)
-      expect(flash[:success]).to have_content(/advertentie is verwijderd/i)
+    context "with correct author" do
+      before do
+        @advert = create(:advert)
+        sign_in @advert.user
+      end
+      it "deletes the advert from the database" do
+        expect {destroyAdvert(@advert)}.to change(Advert, :count).by(-1)
+      end
+
+      it "displays a success message" do
+        destroyAdvert(@advert)
+        expect(flash[:success]).to have_content(/advertentie is verwijderd/i)
+      end
     end
   end
 
