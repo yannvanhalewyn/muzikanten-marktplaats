@@ -5,6 +5,7 @@ RSpec.feature "displaying comments", type: :feature do
   describe "on advert page" do
     let(:comment) { create(:comment) }
     let(:advert) { comment.advert }
+    let(:user) { comment.user }
 
     it "displays a comment" do
       visit advert_path advert
@@ -18,6 +19,15 @@ RSpec.feature "displaying comments", type: :feature do
       visit advert_path advert
       within(".comments #comment_#{comment.id}") do
         expect(page).to have_content("5 minutes ago")
+      end
+    end
+
+    it "displays the author's name and image" do
+      comment.update_attribute(:created_at, 5.minutes.ago)
+      visit advert_path advert
+      within(".comments #comment_#{comment.id}") do
+        expect(page).to have_content(user.name)
+        expect(page).to have_selector("img[src$='#{user.image}']")
       end
     end
 

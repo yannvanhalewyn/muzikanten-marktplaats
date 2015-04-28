@@ -24,6 +24,12 @@
   <ul class="comments">
     <% @advert.comments.order(:created_at).each do |comment| %>
       <li class="comment" id="comment_<%= comment.id %>">
+        <% if comment.user %>
+          <p class="author">
+            <img src="<%= comment.user.image %>" alt="">
+            <strong class="author-name"><%= comment.user.name %>:</strong>
+          </p>
+        <% end %>
         <p class="comment-content">
         <%= comment.content %><br>
           <small class="comment-timetag"><%= time_ago_in_words comment.created_at %> ago</small>
@@ -33,9 +39,13 @@
   </ul>
 
   <!-- new comment form -->
-  <%= form_for [@advert, @advert.comments.new] do |form| %>
-    <%= form.text_area :content %>
-    <%= form.submit "Plaats Comment" %>
+  <% if current_user %>
+    <%= form_for [@advert, @advert.comments.new] do |form| %>
+      <%= form.text_area :content %>
+      <%= form.submit "Plaats Comment" %>
+    <% end %>
+  <% else %>
+    <p>Je moet ingelogd zijn om een comment te plaatsen</p>
   <% end %>
 
 </div>
