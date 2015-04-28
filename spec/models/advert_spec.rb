@@ -68,6 +68,12 @@ RSpec.describe Advert, type: :model do
       advert.destroy
       expect(comment).to_not be_persisted
     end
+
+    it "doesn't destroy other comments" do
+      othercomment = create(:comment)
+      advert.destroy
+      expect(othercomment).to be_persisted
+    end
   end
 
 end
