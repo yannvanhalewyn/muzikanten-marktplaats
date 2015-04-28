@@ -13,6 +13,7 @@ en:
     edit: "Edit"
     delete: "Delete"
     submit: "Save"
+    seller: "Seller"
 
   comments:
     title: "Comments"

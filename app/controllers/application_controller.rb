@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   def set_locale
     # Makro for transforming sth in double quotes into locale
     # f"vf"S(itllxf"lx2F"ci"
-
     I18n.locale = "nl"
   end
   def show_flash

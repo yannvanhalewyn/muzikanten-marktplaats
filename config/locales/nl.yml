@@ -13,6 +13,7 @@ nl:
     edit: "Bewerk Advertentie"
     delete: "Verwijder Advertentie"
     submit: "Opslaan"
+    seller: "Verkoper"
 
   comments:
     title: "Comments"

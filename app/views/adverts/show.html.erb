@@ -1,3 +1,13 @@
+<!-- The seller widget -->
+<div class="seller-widget">
+  <%= link_to @advert.user.fb_profile_url do %>
+    <h2><%= t("adverts.seller") %></h2>
+    <img src="<%= @advert.user.image %>" alt="">
+    <p class="seller-name"><%= @advert.user.name %></p>
+  <% end %>
+</div>
+
+<!-- The advert content -->
 <h1 class="advert-title"><%= @advert.title %></h1>
 <p><%= @advert.description %></p>
 <% if @advert.price %>

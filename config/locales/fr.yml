@@ -13,6 +13,7 @@ fr:
     edit: "Modifier"
     delete: "Effacer"
     submit: "Sauvegarder"
+    seller: "Vendeur"
 
   comments:
     title: "Commentaires"
