@@ -1,8 +1,8 @@
 <% if current_user %>
-  <%= link_to "Plaats Advertentie", new_advert_path %>
+  <%= link_to t("adverts.new"), new_advert_path %>
 <% end %>
 
-<h1>Adverts</h1>
+<h1><%= t("adverts.title") %></h1>
 <ul class="adverts">
   <% @adverts.each do |advert| %>
     <li id="advert_<%= advert.id %>" class="advert-listing">

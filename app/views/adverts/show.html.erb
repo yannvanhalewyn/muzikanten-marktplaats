@@ -1,27 +1,27 @@
 <h1 class="advert-title"><%= @advert.title %></h1>
 <p><%= @advert.description %></p>
 <% if @advert.price %>
-  <p>Richtprijs: <%= number_to_currency(@advert.price, unit: "€") %></p>
+  <p><%= t("adverts.target-price") %>: <%= number_to_currency(@advert.price, unit: "€") %></p>
 <% else %>
   <p>Prijs is niet gespecifiëerd</p>
 <% end %>
 
 <!-- The author links -->
 <% if current_user == @advert.user %>
-  <%= link_to "Bewerk advertentie", edit_advert_path(@advert) %>
-  <%= link_to "Verwijder advertentie", advert_path(@advert),
+  <%= link_to t("adverts.edit"), edit_advert_path(@advert) %>
+  <%= link_to t("adverts.delete"), advert_path(@advert),
                     method: :delete,
-                    data: {confirm: "Ben je zeker? Dit kan niet ongedaan worden."} %>
+                    data: {confirm: t("alert.confirm-delete")} %>
 <% end %>
 
 <div class="comment-section">
-  <h1>Comments</h1>
+  <h1><%= t("comments.title") %></h1>
 
   <% if @advert.comments.empty? %>
-    <p>Er zijn nog geen reacties geplaatst op deze advertentie. Plaats als eerste een comment!</p>
+    <p><%= t('comments.no-comments-yet') %></p>
   <% end %>
 
-  <ul class="comments">
+  <ul class="comments.comments">
     <% @advert.comments.order(:created_at).each do |comment| %>
       <li class="comment" id="comment_<%= comment.id %>">
         <% if comment.user %>
@@ -32,7 +32,7 @@
         <% end %>
         <p class="comment-content">
         <%= comment.content %><br>
-          <small class="comment-timetag"><%= time_ago_in_words comment.created_at %> ago</small>
+          <small class="comment-timetag"><%= time_ago_in_words comment.created_at %></small>
         </p>
       </li>
     <% end %>
@@ -42,10 +42,10 @@
   <% if current_user %>
     <%= form_for [@advert, @advert.comments.new] do |form| %>
       <%= form.text_area :content %>
-      <%= form.submit "Plaats Comment" %>
+      <%= form.submit t("comments.add-comment") %>
     <% end %>
   <% else %>
-    <p>Je moet ingelogd zijn om een comment te plaatsen</p>
+    <p><%= t("comments.not-logged-in") %></p>
   <% end %>
 
 </div>

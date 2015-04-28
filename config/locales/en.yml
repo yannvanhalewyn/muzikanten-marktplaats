@@ -1,23 +1,40 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  # Home page / Adverts index
+  user-widget:
+    log-in-fb: "Log In with Facebook"
+    log-out: "Log Out"
+    welcome: "Welcome"
+
+  # Show advert
+  adverts:
+    new: "Create new ad!"
+    title: "Adverts"
+    target-price: "Target Price"
+    edit: "Edit"
+    delete: "Delete"
+    submit: "Save"
+
+  comments:
+    title: "Comments"
+    no-comments-yet: "There are no comments yet."
+    add-comment: "Add Comment"
+    not-logged-in: "You must be logged in to comment on this ad."
+
+  # Flash messages
+  flash:
+    add-advert-success: "Your ad has been posted!"
+    add-advert-fail: "Your ad could not be saved. Try again later!"
+    edit-advert-success: "Your ad has been edited."
+    edit-advert-fail: "Your ad could not be edited. Try again later!"
+    delete-advert-success: "Your ad has been deleted!"
+    add-comment-success: "Your comment was saved."
+    add-comment-fail: "Your comment could not be saved."
+    require-login: "You must be logged in for that."
+    login-success: "You have been logged in!"
+    logout-success: "You have been logged out!"
+    login-fail: "There was a problem authenticating you. Please try again later."
+
+  # Alert messages
+  alert:
+    confirm-delete: "Are you sure? This cannot be undone."
+

@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
     comment = @advert.comments.new(comment_params)
     comment.user_id = current_user.to_param
     if comment.save
-      redirect_to advert_path(@advert), success: "Je comment was geplaatst."
+      redirect_to advert_path(@advert), success: t("flash.add-comment-success")
     else
-      redirect_to advert_path(@advert), error: "Je comment werd niet geplaatst."
+      redirect_to advert_path(@advert), error: t("flash.add-comment-fail")
     end
   end
 

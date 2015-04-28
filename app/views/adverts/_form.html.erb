@@ -10,14 +10,14 @@
     </div>
   <% end %>
 
-  <%= form.label :title, "Titel" %><br>
+  <%= form.label :title %><br>
   <%= form.text_field :title %><br>
 
-  <%= form.label :description, "Beschrijving" %><br>
+  <%= form.label :description %><br>
   <%= form.text_area :description %><br>
 
-  <%= form.label :price, "Richt Prijs" %><br>
+  <%= form.label :price, t("adverts.target-price") %><br>
   <%= form.text_field :price %><br>
 
-  <%= form.submit "Opslaan" %>
+  <%= form.submit t("adverts.submit") %>
 <% end %>

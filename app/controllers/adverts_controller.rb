@@ -19,9 +19,9 @@ class AdvertsController < ApplicationController
   def create
     @advert = current_user.adverts.new(advert_params)
     if @advert.save
-      redirect_to advert_path(@advert), success: "Je advertentie is geplaatst!"
+      redirect_to advert_path(@advert), success: t("flash.add-advert-success")
     else
-      flash[:error] = "Je advertentie kon niet worden geplaatst."
+      flash[:error] = t("flash.add-advert-fail")
       render action: :new
     end
   end
@@ -31,16 +31,15 @@ class AdvertsController < ApplicationController
 
   def update
     if @advert.update(advert_params)
-      redirect_to advert_path(@advert), success: "Je advertentie is bewerkt!"
+      redirect_to advert_path(@advert), success: t("flash.edit-advert-success")
     else
-      redirect_to edit_advert_path(@advert), error: "Je advertentie kon " +
-                                                   "niet worden bewerkt."
+      redirect_to edit_advert_path(@advert), error: t("flash.edit-advert-fail")
     end
   end
 
   def destroy
     @advert.destroy
-    redirect_to adverts_path, success: "Je advertentie is verwijderd."
+    redirect_to adverts_path, success: t("flash.delete-advert-success")
   end
 
   private
