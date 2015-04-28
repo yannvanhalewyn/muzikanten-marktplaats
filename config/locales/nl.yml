@@ -1,0 +1,19 @@
+nl:
+  activerecord:
+    models:
+      advert: Advertentie
+    attributes:
+      advert:
+        description: Beschrijving
+        title: Titel
+    errors:
+      models:
+        advert:
+          attributes:
+            title:
+              too_short: 'is te kort (minstens 3 letters)'
+              blank: 'mag niet leeg zijn'
+            description:
+              too_short: 'is te kort (minstens 10 letters)'
+              blank: 'mag niet leeg zijn'
+
