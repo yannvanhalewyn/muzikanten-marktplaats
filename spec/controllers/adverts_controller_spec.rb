@@ -52,7 +52,7 @@ RSpec.describe AdvertsController, type: :controller do
   describe "POST create" do
     describe "with valid params" do
       def validPostRequest
-        post :create, {:advert => attributes_for(:advert_with_price)}
+        post :create, {:advert => attributes_for(:advert)}
       end
 
       it "creates a new advert" do

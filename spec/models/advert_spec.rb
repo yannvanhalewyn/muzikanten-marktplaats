@@ -14,6 +14,10 @@ RSpec.describe Advert, type: :model do
       expect(advert).to validate_presence_of(:title)
     end
 
+    it "fails without user_id" do
+      expect(advert).to validate_presence_of(:user_id)
+    end
+
     it "fails with to short title" do
       advert = Advert.create(title: "SH", description: "A valid description")
       expect(advert).to_not be_valid

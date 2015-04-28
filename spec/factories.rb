@@ -14,7 +14,7 @@ FactoryGirl.define do
 
 
   factory :comment do
-    user_id 1
+    user
     advert
     content "MyText"
   end
@@ -23,6 +23,7 @@ FactoryGirl.define do
     title "A valid advert title"
     description "A valid advert description"
 
+    user
     factory :advert_with_price do
       price 200
     end

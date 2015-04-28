@@ -2,8 +2,8 @@ class Advert < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   belongs_to :user
 
-  validates :title, presence: true
-  validates :description, presence: true, length: { minimum: 10 }
+  validates_presence_of :title, :description, :user_id
+  validates :description, length: { minimum: 10 }
   validates :title, length: { minimum: 3 }
 
   def sold?
