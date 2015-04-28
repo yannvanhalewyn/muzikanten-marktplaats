@@ -29,12 +29,25 @@ RSpec.describe AdvertsController, type: :controller do
   end
 
   describe "GET new" do
-    before { get :new }
-    it "assigns a new advert to @advert" do
-      expect(assigns(:advert)).to be_a_new(Advert)
+    context("logged out") do
+      it "redirects to root path" do
+        get :new
+        expect(response).to redirect_to(root_path)
+      end
     end
-    it "renders the new template" do
-      expect(response).to render_template :new
+
+    context("logged in") do
+      let(:user) { create(:user) }
+      before do
+        sign_in user
+        get :new
+      end
+      it "assigns a new advert to @advert" do
+        expect(assigns(:advert)).to be_a_new(Advert)
+      end
+      it "renders the new template" do
+        expect(response).to render_template :new
+      end
     end
   end
 

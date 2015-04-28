@@ -18,6 +18,19 @@ RSpec.feature "displaying adverts", type: :feature do
       click_link advert.title
       expect(current_path).to eq(advert_path(advert))
     end
+  end
 
+  context "logged out" do
+    it "does not display link to new advert" do
+      expect(page).to_not have_selector(:link_or_button, "Plaats Advertentie")
+    end
+  end
+
+  context "logged in" do
+    let(:user) { create(:user) }
+    before{sign_in user}
+    it "displays link to new advert" do
+      expect(page).to have_selector(:link_or_button, "Plaats Advertentie")
+    end
   end
 end

@@ -9,6 +9,9 @@ class AdvertsController < ApplicationController
   end
 
   def new
+    if !current_user
+      redirect_to root_path, error: "Je moet ingelogd zijn om een advertentie te plaatsen."
+    end
     @advert = Advert.new
   end
 

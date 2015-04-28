@@ -1,4 +1,7 @@
-<%= link_to "Plaats Advertentie", new_advert_path %>
+<% if current_user %>
+  <%= link_to "Plaats Advertentie", new_advert_path %>
+<% end %>
+
 <h1>Adverts</h1>
 <ul class="adverts">
   <% @adverts.each do |advert| %>
