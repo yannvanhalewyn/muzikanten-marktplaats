@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+/*
+ *body {
+ *  margin: 0;
+ *}
+ *
+ *.user-widget {
+ *  margin: 10px;
+ *  margin-left: 70%;
+ *  padding: 20px;
+ *  background: #3a5795;
+ *  border-radius: 10px;
+ *}
+ *
+ *.user-widget a.btn {
+ *  color: white;
+ *  text-decoration: none;
+ *}
+ *
+ *.user-widget a.btn:hover {
+ *  color: orange;
+ *}
+ *
+ *.user-widget img {
+ *  border-radius: 20%;
+ *}
+ *.user-widget img:hover {
+ *  border-radius: 50%;
+ *  transition: 400ms;
+ *}
+ *
+ *.flash {
+ *  padding: 10px;
+ *  font-size: 18px;
+ *}
+ *.flash p {
+ *  color: red;
+ *}
+ *
+ *.flash-success {
+ *  background-color: green;
+ *  color: white;
+ *}
+ *.flash-error {
+ *  background-color: red;
+ *  color: white;
+ *}
+ *.flash-notice {
+ *  background-color: royalblue;
+ *  color: white;
+ *}
+ */

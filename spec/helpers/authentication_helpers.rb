@@ -32,12 +32,6 @@ module AuthenticationHelpers
   module Controller
     def sign_in user
       allow(controller).to receive(:current_user).and_return(user)
-      #controller.stub(:current_user).and_return(user)
-      #controller.stub(:user_id).and_return(user.id)
-      #auth_hash = AuthenticationHelpers::user_to_aouth_hash user
-      #OmniAuth.config.add_mock(:facebook, auth_hash)
-      #request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-      #post :create, provider: :facebook
     end
   end
 end
