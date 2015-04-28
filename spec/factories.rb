@@ -1,14 +1,15 @@
-FactoryGirl.define do  factory :user do
-    provider "MyString"
-uid "MyString"
-name "MyString"
-first_name "MyString"
-last_name "MyString"
-email "MyString"
-image "MyString"
-fb_profile_url "MyString"
-oauth_token "MyString"
-oauth_expires_at "2015-04-27 22:02:19"
+FactoryGirl.define do
+  factory :user do
+    provider "facebook"
+    sequence(:uid) { |n| "#{n}"}
+    sequence(:name) { |n| "Person_#{n}"}
+    first_name "firstname"
+    last_name "lastname"
+    email "email@johndoe.com"
+    image "http://www.image.com/link_to.jpg"
+    fb_profile_url "http://www.facebook.com/"
+    oauth_token "MyString"
+    oauth_expires_at 30.days.from_now
   end
 
 

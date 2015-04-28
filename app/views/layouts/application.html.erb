@@ -12,15 +12,15 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<div id="user-widget">
+<div class="user-widget">
   <% if current_user %>
-    Welcome <strong><%= current_user.name %></strong>!
+    Welkom <strong><%= current_user.name %></strong>!
     <a href="<%= current_user.fb_profile_url %>">
       <img src="<%= current_user.image %>">
     </a>
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+    <%= link_to "Uitloggen", signout_path, id: "sign_out" %>
   <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <%= link_to "Inloggen met Facebook", "/auth/facebook", id: "sign_in" %>
   <% end %>
 </div>
 

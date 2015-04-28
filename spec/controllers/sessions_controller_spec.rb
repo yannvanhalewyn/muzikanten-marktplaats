@@ -61,6 +61,14 @@ RSpec.describe SessionsController, type: :controller do
         post :destroy
         expect(session[:user_id]).to be_nil
       end
+      it "redirects to the root page" do
+        post :destroy
+        expect(response).to redirect_to(root_url)
+      end
+      it "displays success message" do
+        post :destroy
+        expect(flash[:success]).to have_content(/je bent uitgelogd/i)
+      end
     end
 
     describe "#failure" do
