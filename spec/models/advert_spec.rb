@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Advert, type: :model do
 
   let(:advert) { FactoryGirl.create(:advert) }
-  #it { should belong_to(:user) }
+  it { should belong_to(:user) }
 
   describe "instantiation" do
     it "persists to the database" do

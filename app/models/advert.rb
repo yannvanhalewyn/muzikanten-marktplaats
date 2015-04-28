@@ -1,5 +1,7 @@
 class Advert < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  belongs_to :user
+
   validates :title, presence: true
   validates :description, presence: true, length: { minimum: 10 }
   validates :title, length: { minimum: 3 }
