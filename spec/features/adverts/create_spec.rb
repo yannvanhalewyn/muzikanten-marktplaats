@@ -10,7 +10,7 @@ RSpec.feature "creating new adverts", type: :feature do
       expect(page).to_not have_selector('form')
     end
     it "displays the error message" do
-      expect(page).to have_content(/je moet ingelogd zijn/i)
+      expect(page).to have_content(/daarvoor moet je ingelogd zijn/i)
     end
   end
 

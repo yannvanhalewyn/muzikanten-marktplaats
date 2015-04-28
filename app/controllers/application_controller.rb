@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     if !current_user
-      redirect_to root_path, error: "Je moet ingelogd zijn om een advertentie te plaatsen."
+      redirect_to root_path, error: "Daarvoor moet je ingelogd zijn!"
     end
   end
 end

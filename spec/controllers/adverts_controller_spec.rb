@@ -69,7 +69,7 @@ RSpec.describe AdvertsController, type: :controller do
         expect(response).to redirect_to root_path
       end
       it "sets an error message" do
-        expect(flash[:error]).to have_content(/je moet ingelogd zijn/i)
+        expect(flash[:error]).to have_content(/daarvoor moet je ingelogd zijn/i)
       end
     end
 

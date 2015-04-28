@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "displaying comments", type: :feature do
 
-  describe "on advert show template" do
+  describe "on advert page" do
     let(:comment) { create(:comment) }
     let(:advert) { comment.advert }
 
