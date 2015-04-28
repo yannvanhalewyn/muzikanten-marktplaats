@@ -37,7 +37,7 @@ class AdvertsController < ApplicationController
     end
   end
 
-  def destroy # TODO: Destory nested resources (comments)
+  def destroy
     @advert.destroy
     redirect_to adverts_path, success: "Je advertentie is verwijderd."
   end

@@ -4,6 +4,7 @@ RSpec.feature "deleting adverts", type: :feature do
 
   it "is successful" do
     advert = create(:advert)
+    sign_in advert.user
     visit advert_path(advert)
     expect{
       click_link "Verwijder advertentie"

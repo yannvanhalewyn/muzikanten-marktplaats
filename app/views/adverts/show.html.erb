@@ -5,10 +5,14 @@
 <% else %>
   <p>Prijs is niet gespecifiëerd</p>
 <% end %>
-<%= link_to "Bewerk advertentie", edit_advert_path(@advert) %>
-<%= link_to "Verwijder advertentie", advert_path(@advert),
-                  method: :delete,
-                  data: {confirm: "Ben je zeker? Dit kan niet ongedaan worden."} %>
+
+<!-- The author links -->
+<% if current_user == @advert.user %>
+  <%= link_to "Bewerk advertentie", edit_advert_path(@advert) %>
+  <%= link_to "Verwijder advertentie", advert_path(@advert),
+                    method: :delete,
+                    data: {confirm: "Ben je zeker? Dit kan niet ongedaan worden."} %>
+<% end %>
 
 <div class="comment-section">
   <h1>Comments</h1>

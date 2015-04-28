@@ -2,11 +2,15 @@ require 'rails_helper'
 
 RSpec.feature "editing existing adverts", type: :feature do
 
-  def edit_advert(options={})
+  before do
     @advert = create(:advert)
+    sign_in @advert.user
     visit advert_path(@advert)
     click_link "Bewerk advertentie"
 
+  end
+
+  def edit_advert(options={})
     options[:title] ||= "A valid title"
     options[:description] ||= "A valid description"
     options[:price] ||= 200

@@ -22,7 +22,8 @@ RSpec.feature "displaying adverts", type: :feature do
 
   context "logged out" do
     it "does not display link to new advert" do
-      expect(page).to_not have_selector(:link_or_button, "Plaats Advertentie")
+      expect(page).to_not have_selector(:link_or_button,
+                                        text: /plaats/i)
     end
   end
 
