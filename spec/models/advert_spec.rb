@@ -61,4 +61,13 @@ RSpec.describe Advert, type: :model do
     end
   end
 
+  describe "#destroy" do
+    it "destroys all related comments" do
+      comment = advert.comments.create(content: "A valid comment", user_id: 1)
+      expect(comment).to be_persisted
+      advert.destroy
+      expect(comment).to_not be_persisted
+    end
+  end
+
 end
