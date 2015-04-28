@@ -17,11 +17,12 @@ class AdvertsController < ApplicationController
   end
 
   def create
-    advert = current_user.adverts.new(advert_params)
-    if advert.save
-      redirect_to advert_path(advert), success: "Je advertentie is geplaatst!"
+    @advert = current_user.adverts.new(advert_params)
+    if @advert.save
+      redirect_to advert_path(@advert), success: "Je advertentie is geplaatst!"
     else
-      redirect_to new_advert_path, error: "Je advertentie kon niet worden geplaatst."
+      flash[:error] = "Je advertentie kon niet worden geplaatst."
+      render action: :new
     end
   end
 

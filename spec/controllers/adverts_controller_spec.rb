@@ -107,8 +107,8 @@ RSpec.describe AdvertsController, type: :controller do
         expect{invalidPostRequest}.to_not change(Advert, :count)
       end
 
-      it "redirects to the new advert page" do
-        expect(invalidPostRequest).to redirect_to(new_advert_path)
+      it "rerenders the new template" do
+        expect(invalidPostRequest).to render_template(:new)
       end
 
       it "displays error message" do
