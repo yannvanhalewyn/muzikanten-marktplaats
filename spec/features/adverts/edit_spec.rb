@@ -6,7 +6,7 @@ RSpec.feature "editing existing adverts", type: :feature do
     @advert = create(:advert)
     sign_in @advert.user
     visit advert_path(@advert)
-    click_link "Bewerk advertentie"
+    click_link "Bewerk Advertentie"
 
   end
 
@@ -16,7 +16,7 @@ RSpec.feature "editing existing adverts", type: :feature do
     options[:price] ||= 200
     fill_in "Titel", with: options[:title]
     fill_in "Beschrijving", with: options[:description]
-    fill_in "Richt Prijs", with: options[:price]
+    fill_in "Richtprijs", with: options[:price]
     click_button "Opslaan"
   end
 

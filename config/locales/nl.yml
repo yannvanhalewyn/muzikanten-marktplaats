@@ -7,7 +7,7 @@ nl:
 
   # Show advert
   adverts:
-    new: "Plaats advertentie!"
+    new: "Plaats Advertentie!"
     title: "Advertenties"
     target-price: "Richtprijs"
     edit: "Bewerk Advertentie"

@@ -21,7 +21,7 @@ RSpec.feature "creating new adverts", type: :feature do
 
     def visit_new_adverts_and_fill_in_form(options={})
       visit "/adverts"
-      click_link "Plaats Advertentie"
+      click_link "Plaats Advertentie!"
       expect(page).to have_selector('form')
 
       options[:title] ||= "A valid title"
@@ -29,7 +29,7 @@ RSpec.feature "creating new adverts", type: :feature do
       options[:price] ||= 200
       fill_in "Titel", with: options[:title]
       fill_in "Beschrijving", with: options[:description]
-      fill_in "Richt Prijs", with: options[:price]
+      fill_in "Richtprijs", with: options[:price]
       click_button "Opslaan"
     end
 

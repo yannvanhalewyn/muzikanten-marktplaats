@@ -18,7 +18,7 @@ RSpec.feature "displaying comments", type: :feature do
       comment.update_attribute(:created_at, 5.minutes.ago)
       visit advert_path advert
       within(".comments #comment_#{comment.id}") do
-        expect(page).to have_content("5 minutes ago")
+        expect(page).to have_content("5 minuten")
       end
     end
 
@@ -44,14 +44,14 @@ RSpec.feature "displaying comments", type: :feature do
       clean_advert = create(:advert)
       visit advert_path clean_advert
       within ('.comment-section') do
-        expect(page).to have_content("Er zijn nog geen reacties geplaatst op deze advertentie. Plaats als eerste een comment!")
+        expect(page).to have_content("Er zijn nog geen reacties geplaatst op deze advertentie.")
       end
     end
 
     it "doesn't display a no-comments-message if there are comments" do
       visit advert_path advert
       within ('.comment-section') do
-        expect(page).to_not have_content("Er zijn nog geen reacties geplaatst op deze advertentie. Plaats als eerste een comment!")
+        expect(page).to_not have_content("Er zijn nog geen reacties geplaatst op deze advertentie.")
       end
     end
   end

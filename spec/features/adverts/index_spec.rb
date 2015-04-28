@@ -31,7 +31,8 @@ RSpec.feature "displaying adverts", type: :feature do
     let(:user) { create(:user) }
     before{sign_in user}
     it "displays link to new advert" do
-      expect(page).to have_selector(:link_or_button, "Plaats Advertentie")
+      expect(page).to have_selector(:link_or_button,
+                                   text: /plaats advertentie/i)
     end
   end
 end

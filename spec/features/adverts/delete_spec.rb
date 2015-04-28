@@ -7,7 +7,7 @@ RSpec.feature "deleting adverts", type: :feature do
     sign_in advert.user
     visit advert_path(advert)
     expect{
-      click_link "Verwijder advertentie"
+      click_link "Verwijder Advertentie"
     }.to change(Advert, :count).by(-1)
   end
 end

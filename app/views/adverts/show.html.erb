@@ -21,7 +21,7 @@
     <p><%= t('comments.no-comments-yet') %></p>
   <% end %>
 
-  <ul class="comments.comments">
+  <ul class="comments">
     <% @advert.comments.order(:created_at).each do |comment| %>
       <li class="comment" id="comment_<%= comment.id %>">
         <% if comment.user %>
