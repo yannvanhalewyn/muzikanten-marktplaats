@@ -5,6 +5,10 @@ fr:
     log-out: "Deconnexion"
     welcome: "Bienvenu(e)"
 
+  # User page
+  user:
+    fb-profile: "Profile Facebook"
+
   # Show advert
   adverts:
     new: "Ajouter une annonce"

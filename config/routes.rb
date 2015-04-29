@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :comments
     #post 'comments' => 'comments#create'
   end
-  get 'users/:id', to: 'users#show'
+  get 'users/:id', to: 'users#show', as: 'user'
 
 
   # User Authentication

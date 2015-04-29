@@ -5,6 +5,10 @@ en:
     log-out: "Log Out"
     welcome: "Welcome"
 
+  # User page
+  user:
+    fb-profile: "Facebook Profile"
+
   # Show advert
   adverts:
     new: "Create new ad!"

@@ -5,6 +5,10 @@ nl:
     log-out: "Uitloggen"
     welcome: "Welkom"
 
+  # User page
+  user:
+    fb-profile: "Facebook Profiel"
+
   # Show advert
   adverts:
     new: "Plaats Advertentie!"

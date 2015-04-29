@@ -7,8 +7,8 @@ FactoryGirl.define do
     last_name "lastname"
     email "email@johndoe.com"
     image "http://www.image.com/link_to.jpg"
-    fb_profile_url "http://www.facebook.com/"
-    oauth_token "MyString"
+    fb_profile_url "http://www.facebook.com/john.doe"
+    oauth_token "aoathtoken"
     oauth_expires_at 30.days.from_now
   end
 
