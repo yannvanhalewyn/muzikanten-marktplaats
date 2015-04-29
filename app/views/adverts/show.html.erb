@@ -1,6 +1,6 @@
 <!-- The seller widget -->
 <div class="seller-widget">
-  <%= link_to @advert.user.fb_profile_url do %>
+  <%= link_to user_path @advert.user do %>
     <h2><%= t("adverts.seller") %></h2>
     <img src="<%= @advert.user.image %>" alt="">
     <p class="seller-name"><%= @advert.user.name %></p>
@@ -35,10 +35,12 @@
     <% @advert.comments.order(:created_at).each do |comment| %>
       <li class="comment" id="comment_<%= comment.id %>">
         <% if comment.user %>
-          <p class="author">
-            <img src="<%= comment.user.image %>" alt="">
-            <strong class="author-name"><%= comment.user.name %>:</strong>
-          </p>
+          <%= link_to user_path(comment.user) do %>
+            <p class="author">
+              <img src="<%= comment.user.image %>" alt="">
+              <strong class="author-name"><%= comment.user.name %>:</strong>
+            </p>
+          <% end %>
         <% end %>
         <p class="comment-content">
         <%= comment.content %><br>

@@ -22,15 +22,20 @@ RSpec.feature "advert page", type: :feature do
       expect(page).to have_content(200)
     end
 
-    it "the author's name" do
+    it "the author's name and profile picture" do
       within '.seller-widget' do
+        expect(page).to have_selector("img[src$='#{user.image}']")
         expect(page).to have_content(user.name)
       end
     end
+  end
 
-    it "the author's profile picutre" do
+  context "the seller-widget" do
+    let (:user) { advert.user }
+    before { visit advert_path(advert) }
+    it "links to the seller page" do
       within '.seller-widget' do
-        expect(page).to have_selector("img[src$='#{user.image}']")
+        expect(page).to have_selector("a[href$='#{user_path(user)}']")
       end
     end
   end

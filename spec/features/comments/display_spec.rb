@@ -31,6 +31,13 @@ RSpec.feature "displaying comments", type: :feature do
       end
     end
 
+    it "has link to the author" do
+      visit advert_path advert
+      within(".comments #comment_#{comment.id}") do
+        expect(page).to have_selector("a[href$='#{user_path(user)}']")
+      end
+    end
+
     it "displays comments in chronological order" do
       earlier_comment = advert.comments.create!(content: "Earlier Comment",
                                               created_at: 5.minutes.ago,
