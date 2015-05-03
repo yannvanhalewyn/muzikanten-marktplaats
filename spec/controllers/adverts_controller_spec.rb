@@ -53,12 +53,19 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET edit" do
     let(:advert) { create(:advert) }
-    before { get :edit, id: advert.id }
     it "assigns a the correct advert to @advert" do
+      get :edit, id: advert.id
       expect(assigns(:advert)).to eq(advert)
     end
-    it "renders the edit template" do
+    it "renders the edit template if correct user" do
+      sign_in advert.user
+      get :edit, id: advert.id
       expect(response).to render_template :edit
+    end
+    it "redirects to root if other user" do
+      sign_in create(:user)
+      get :edit, id: advert.id
+      expect(response).to redirect_to root_path
     end
   end
 

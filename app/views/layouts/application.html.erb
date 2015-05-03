@@ -8,18 +8,19 @@
 </head>
 <body>
 
-  <% flash.each do |type, message| %>
-    <div class="flash flash-<%= type %>">
-      <%= message %>
-    </div>
-  <% end %>
-  <%= link_to "HOME", root_path %>
+<% flash.each do |type, message| %>
+  <div class="flash flash-<%= type %>">
+    <%= message %>
+  </div>
+<% end %>
+<%= link_to "HOME", root_path %>
+
 <div class="user-widget">
   <% if current_user %>
     <%= t("user-widget.welcome") %> <strong><%= current_user.name %></strong>!
-    <a href="<%= current_user.fb_profile_url %>">
+    <%= link_to user_path(current_user) do %>
       <img src="<%= current_user.image %>">
-    </a>
+    <% end %>
     <%= link_to t("user-widget.log-out"), signout_path, id: "sign_out", class:"btn" %>
   <% else %>
     <%= link_to t('user-widget.log-in-fb'), "/auth/facebook", id: "sign_in", class: "btn" %>

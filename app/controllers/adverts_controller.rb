@@ -2,7 +2,7 @@ class AdvertsController < ApplicationController
 
   before_action :require_user, only: [:create, :new]
   before_action :find_advert, only: [:show, :edit, :update, :destroy]
-  before_action :require_author, only: [:update, :destroy]
+  before_action :require_author, only: [:edit, :update, :destroy]
 
 
   def index
