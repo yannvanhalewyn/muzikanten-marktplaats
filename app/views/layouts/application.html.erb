@@ -8,11 +8,8 @@
 </head>
 <body>
 
-<% flash.each do |type, message| %>
-  <div class="flash flash-<%= type %>">
-    <%= message %>
-  </div>
-<% end %>
+<%= render 'layouts/flash' %>
+
 <%= link_to "HOME", root_path %>
 
 <div class="user-widget">
@@ -27,6 +24,9 @@
   <% end %>
 </div>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
+
 </body>
 </html>
