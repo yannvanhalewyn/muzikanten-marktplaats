@@ -1,4 +1,9 @@
 FactoryGirl.define do
+
+  factory :image do
+
+  end
+
   factory :user do
     provider "facebook"
     sequence(:uid) { |n| "#{n}"}

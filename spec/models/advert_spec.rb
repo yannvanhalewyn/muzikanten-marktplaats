@@ -4,6 +4,7 @@ RSpec.describe Advert, type: :model do
 
   let(:advert) { FactoryGirl.create(:advert) }
   it { should belong_to(:user) }
+  it { should have_many(:images) }
 
   describe "instantiation" do
     it "persists to the database" do

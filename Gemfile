@@ -32,6 +32,10 @@ gem 'omniauth-facebook', '~> 2.0.1'
 gem 'bootstrap-sass', '~> 3.3.4.1'
 gem 'autoprefixer-rails'
 
+# carrierwave
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.2.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

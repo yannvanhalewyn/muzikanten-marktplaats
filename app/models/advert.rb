@@ -1,5 +1,6 @@
 class Advert < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  has_many :images
   belongs_to :user
 
   validates_presence_of :title, :description, :user_id
