@@ -16,7 +16,7 @@ RSpec.describe Image, type: :model do
 
   describe "destruction" do
     it "destroys the local file" do
-      pending "not working/not implemented yet. Come back after feature end #{__FILE__}"
+      pending "this works in development mode, but not in test env. I don't want to add code just so the tests pass. Figure this out later"
       filepath = image.asset.url
       image.destroy
       expect(File).to_not exist(filepath)

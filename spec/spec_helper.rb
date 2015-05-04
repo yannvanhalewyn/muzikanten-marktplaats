@@ -1,8 +1,14 @@
+ENV["RAILS_ENV"] ||= 'test'
+#require 'rspec/rails'
+
 require 'factory_girl_rails'
+require 'capybara/rspec'
+require 'capybara/webkit/matchers'
 require 'omniauth'
 require 'helpers/authentication_helpers.rb'
 
 RSpec.configure do |config|
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -12,9 +18,43 @@ RSpec.configure do |config|
   end
 
 
+  # =================
+  # JAVASCRIPT CONFIG
+  # =================
+  Capybara.javascript_driver = :webkit
+
+  # ================
+  # Database Cleaner
+  # ================
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  # ===============
+  # Syntax Includes
+  # ===============
+  config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
   config.include FactoryGirl::Syntax::Methods
 
-  # Configure omniauth
+  # ===============
+  # OMNIAUTH CONFIG
+  # ===============
   RACK_ENV = ENV['ENVIRONMENT'] ||= 'test'
   OmniAuth.config.test_mode = true
   omniauth_hash = {
@@ -40,10 +80,15 @@ RSpec.configure do |config|
     OmniAuth::FailureEndpoint.new(env).redirect_to_failure
   }
 
+  # =====================
+  # Custom Helpers config
+  # =====================
   config.include AuthenticationHelpers::Feature, type: :feature
   config.include AuthenticationHelpers::Controller, type: :controller
 
-  # Delete saved carrierwave images after each test
+  # ===================
+  # Carrierwave cleanup
+  # ===================
   config.after(:each) do |config|
    if Rails.env.test? || Rails.env.cucumber?
       FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
