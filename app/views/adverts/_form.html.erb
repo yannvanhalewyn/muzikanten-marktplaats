@@ -21,3 +21,9 @@
 
   <%= form.submit t("adverts.submit"), class: "btn btn-primary" %>
 <% end %>
+
+<%= form_for Image.new do |form| %>
+  <%= form.file_field :image, multiple: true,
+                              id: "new_image",
+                              name: "image[asset]" %>
+<% end %>

@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :image do
-
+    asset { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'test-images', 'test1.jpg')) }
   end
 
   factory :user do

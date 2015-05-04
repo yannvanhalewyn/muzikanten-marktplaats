@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Advert, type: :model do
 
-  let(:advert) { FactoryGirl.create(:advert) }
+  let(:advert) { create(:advert) }
   it { should belong_to(:user) }
   it { should have_many(:images) }
 

@@ -42,5 +42,12 @@ RSpec.configure do |config|
 
   config.include AuthenticationHelpers::Feature, type: :feature
   config.include AuthenticationHelpers::Controller, type: :controller
+
+  # Delete saved carrierwave images after each test
+  config.after(:each) do |config|
+   if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
 end
 

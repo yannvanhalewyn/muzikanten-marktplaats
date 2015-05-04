@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   root to: "adverts#index"
+
   resources :adverts do
     resources :comments
-    #post 'comments' => 'comments#create'
   end
+  resources :images, only: [:create, :destroy]
+
   get 'users/:id', to: 'users#show', as: 'user'
 
 
