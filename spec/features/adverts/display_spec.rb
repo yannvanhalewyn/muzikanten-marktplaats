@@ -28,6 +28,15 @@ RSpec.feature "advert page", type: :feature do
         expect(page).to have_content(user.name)
       end
     end
+
+    it "the images linked to the ad" do
+      img = advert.images.create(attributes_for(:image))
+      visit advert_path(advert)
+      within '.advert-images' do
+        expect(page.all('.thumb').count).to eq(1)
+        expect(page).to have_selector("img[src$='#{img.asset.medium.url}']")
+      end
+    end
   end
 
   context "the seller-widget" do
