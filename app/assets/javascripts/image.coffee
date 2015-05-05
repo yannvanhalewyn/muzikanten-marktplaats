@@ -1,13 +1,20 @@
 $(document).on "ready page:load", ->
+  ids = []
   $('#add_image_field').fileupload
     add: (e, data) ->
-      data.submit()
-      #console.log('add')
-      #alert('add')
+      types = /(\.|\/)(jpe?g|png)$/i
+      file = data.files[0]
+      if types.test(file.type) || types.test(file.name)
+        data.context = $(tmpl("uploaded-image-template", file))
+        $('#uploaded-images').append(data.context)
+        data.submit()
+      else
+        alert("#{file.name} is not a jpg or png image")
     progress: (e, data) ->
       console.log('progress')
     done: (e, data) ->
-      alert('done')
+      ids.push(data.result.id)
+      $('#img_ids').val(ids)
 
 # $(document).on 'ready page:load', ->
 
