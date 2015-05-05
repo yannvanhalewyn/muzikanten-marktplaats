@@ -102,6 +102,20 @@ RSpec.describe AdvertsController, type: :controller do
       end
     end
 
+    describe "adding linked images" do
+      it "updates advert_id for those images" do
+        sign_in create(:user)
+        img1 = create(:image)
+        img2 = create(:image)
+        img3 = create(:image)
+        expect(img1.advert_id).to be_nil
+        post :create, {advert: attributes_for(:advert), img_ids: "1,2,3"}
+        expect(img1.reload.advert_id).to eq(Advert.last.id)
+        expect(img2.reload.advert_id).to eq(Advert.last.id)
+        expect(img3.reload.advert_id).to eq(Advert.last.id)
+      end
+    end
+
     context "with invalid params" do
       let(:user) { create(:user) }
       before { sign_in user }
@@ -177,7 +191,18 @@ RSpec.describe AdvertsController, type: :controller do
         expect(response).to redirect_to(edit_advert_path(@advert))
       end
     end
-  end
+
+    describe "with img_ids" do
+      it "updates the advert_ids of those images" do
+        img1 = create(:image)
+        img2 = create(:image)
+        advert = create(:advert)
+        sign_in advert.user
+        put :update, {id: advert.to_param, advert: { title: "sth" }, img_ids: "1,2"}
+        expect(img2.reload.advert_id).to eq(advert.id)
+      end
+    end
+  end # end of PUT update
 
   describe "DELETE destroy" do
 
@@ -213,5 +238,4 @@ RSpec.describe AdvertsController, type: :controller do
       end
     end
   end
-
 end

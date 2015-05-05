@@ -79,6 +79,18 @@ RSpec.describe Advert, type: :model do
       advert.destroy
       expect(othercomment).to be_persisted
     end
+
+    it "destroys all related images" do
+      image = advert.images.create(attributes_for(:image))
+      advert.destroy
+      expect(image).to_not be_persisted
+    end
+
+    it "doesn't destroy  unrelated images" do
+      otherImage = create(:image)
+      advert.destroy
+      expect(otherImage).to be_persisted
+    end
   end
 
 end
