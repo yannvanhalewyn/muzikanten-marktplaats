@@ -18,6 +18,9 @@ class AdvertsController < ApplicationController
 
   def create
     @advert = current_user.adverts.new(advert_params)
+    if params[:img_ids]
+      @advert.images << Image.find(params[:img_ids].split(","))
+    end
     if @advert.save
       redirect_to advert_path(@advert), success: t("flash.add-advert-success")
     else
@@ -30,6 +33,9 @@ class AdvertsController < ApplicationController
   end
 
   def update
+    if params[:img_ids]
+      @advert.images << Image.find(params[:img_ids].split(","))
+    end
     if @advert.update(advert_params)
       redirect_to advert_path(@advert), success: t("flash.edit-advert-success")
     else
