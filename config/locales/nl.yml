@@ -18,6 +18,7 @@ nl:
     delete: "Verwijder Advertentie"
     submit: "Opslaan"
     seller: "Verkoper"
+    add-photos: "Voeg afbeeldingen toe"
 
   comments:
     title: "Comments"

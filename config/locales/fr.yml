@@ -18,6 +18,7 @@ fr:
     delete: "Effacer"
     submit: "Sauvegarder"
     seller: "Vendeur"
+    add-photos: "Ajouter des images"
 
   comments:
     title: "Commentaires"

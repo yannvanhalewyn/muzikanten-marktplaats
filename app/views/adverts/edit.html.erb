@@ -1,1 +1,14 @@
+<div class="advert-images row">
+  <% @advert.images.each do |image| %>
+    <div class="advert-image col-sm-3">
+      <%= image_tag image.asset.medium.url %>
+      <span class="delete-button" data-id=<%= image.id %>>&times;</span>
+    </div>
+  <% end %>
+</div>
+
+<div id="uploaded-images" class="row">
+   <%# images get added to this div as the user selects them %>
+</div>
+
 <%= render 'form' %>

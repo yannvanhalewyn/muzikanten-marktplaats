@@ -9,9 +9,9 @@
 
 <!-- The advert content -->
 <h1 class="advert-title"><%= @advert.title %></h1>
-<div class="advert-images">
+<div class="advert-images row">
   <% @advert.images.each do |image| %>
-    <div class="thumb">
+    <div class="advert-image col-sm-3">
       <%= image_tag image.asset.medium.url %>
     </div>
   <% end %>

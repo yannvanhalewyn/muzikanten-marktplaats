@@ -24,21 +24,19 @@
 <% end %>
 
 <%= form_for Image.new do |form| %>
+  <%= form.label :image, t("adverts.add-photos"), class: "btn btn-primary" %><br>
   <%= form.file_field :image, multiple: true,
                               id: "add_image_field",
-                              name: "image[asset]" %>
+                              name: "image[asset]",
+                              class: "hide" %>
 <% end %>
 
 <script id="uploaded-image-template" type="text/x-tmpl">
-  <div class="thumb">
+  <div class="advert-image col-md-3">
     {%=o.name%}
+    <div class="progress">
+      <div class="progress-bar bar" style="width:0"> </div>
+    </div>
+    <button class="btn btn-danger" id="delete-upload">Remove</button>
   </div>
 </script>
-
-  <%#<div class="thumb thumbnail col-md-3" >%>
-  <%#{%=o.name%}%>
-  <%#<div class="progress">%>
-  <%#<div class="progress-bar bar" style="width:0"> </div>%>
-  <%#</div>%>
-  <%#<button class="btn btn-danger" id="remove_photo">Remove</button>%>
-  <%#</div>%>

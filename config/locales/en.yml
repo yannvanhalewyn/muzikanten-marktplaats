@@ -18,6 +18,7 @@ en:
     delete: "Delete"
     submit: "Save"
     seller: "Seller"
+    add-photos: "Add photos"
 
   comments:
     title: "Comments"
