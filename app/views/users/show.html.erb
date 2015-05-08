@@ -4,14 +4,11 @@
 
 <!-- The user's adverts -->
 <div class="user-adverts">
-  <h1><%= t('adverts.title') %></h1>
-  <li class="adverts">
+  <h1><%= @user.first_name %>'s <%= t('adverts.title') %></h1>
+  <ul class="adverts">
     <% @user.adverts.each do |advert| %>
-      <%= link_to advert_path(advert), class: "advert-listing",
-                    id: "advert_#{advert.id}" do %>
-        <h3><%= advert.title %></h3>
-        <p><%= advert.description %></p>
-      <% end %>
+      <%= render partial: 'adverts/advert_listing', locals: { advert: advert }%>
+      <hr>
     <% end %>
-  </li>
+  </ul>
 </div>
