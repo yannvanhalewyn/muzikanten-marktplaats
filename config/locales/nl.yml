@@ -1,4 +1,9 @@
 nl:
+  # General
+  general:
+    ago: "geleden"
+    comments: "reactie(s)"
+
   # Home page / Adverts index
   user-widget:
     log-in-fb: "Inloggen via Facebook"
