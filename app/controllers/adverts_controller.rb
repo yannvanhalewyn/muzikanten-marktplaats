@@ -6,7 +6,7 @@ class AdvertsController < ApplicationController
 
 
   def index
-    @adverts = Advert.all
+    @adverts = Advert.order("created_at DESC")
   end
 
   def show

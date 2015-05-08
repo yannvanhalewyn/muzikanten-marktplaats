@@ -25,7 +25,9 @@ FactoryGirl.define do
   end
 
   factory :advert do
-    title "A valid advert title"
+    sequence :title do
+      |n| "A valid advert title nr. #{n}"
+    end
     description "A valid advert description"
 
     user
