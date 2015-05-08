@@ -7,8 +7,10 @@
   <% end %>
 </div>
 
-<!-- The advert content -->
+<!-- The advert title -->
 <h1 class="advert-title"><%= @advert.title %></h1>
+
+<!-- Images -->
 <div class="advert-images row">
   <% @advert.images.each do |image| %>
     <div class="advert-image col-sm-3">
@@ -16,6 +18,8 @@
     </div>
   <% end %>
 </div>
+
+<!-- The advert content -->
 <p><%= @advert.description %></p>
 <% if @advert.price %>
   <p><%= t("adverts.target-price") %>: <%= number_to_currency(@advert.price, unit: "€") %></p>
