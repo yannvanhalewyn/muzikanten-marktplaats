@@ -6,7 +6,7 @@
 <div class="user-adverts">
   <h1><%= @user.first_name %>'s <%= t('adverts.title') %></h1>
   <ul class="adverts">
-    <% @user.adverts.each do |advert| %>
+    <% @user.adverts.order("created_at DESC").each do |advert| %>
       <%= render partial: 'adverts/advert_listing', locals: { advert: advert }%>
       <hr>
     <% end %>

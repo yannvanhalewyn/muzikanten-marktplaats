@@ -57,5 +57,6 @@ group :test do
   gem 'capybara', '~> 2.4.4'
   gem 'capybara-webkit', '~> 1.5.1'
   gem 'database_cleaner'
+  gem 'orderly', '~> 0.0.2'
   #gem 'selenium-webdriver', '~> 2.45.0'
 end

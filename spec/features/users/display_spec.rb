@@ -23,6 +23,16 @@ RSpec.feature "User Profile", type: :feature do
       expect(page).to have_content(@advert.title)
       expect(page).to have_content(@advert.description)
     end
+    it "the most recent add on top" do
+      advert = user.adverts.create(attributes_for(:advert))
+      older_advert = user.adverts.create(attributes_for(:advert))
+      newer_advert = user.adverts.create(attributes_for(:advert))
+      newer_advert.update_attribute(:created_at, 5.minutes.from_now)
+      older_advert.update_attribute(:created_at, 5.minutes.ago)
+      visit user_path user
+      expect(newer_advert.title).to appear_before(advert.title)
+      expect(advert.title).to appear_before(older_advert.title)
+    end
     it "links to the user's adverts" do
       expect(page).to have_selector("a[href$='#{advert_path(@advert)}']")
     end

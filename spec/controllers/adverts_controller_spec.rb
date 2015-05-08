@@ -176,15 +176,15 @@ RSpec.describe AdvertsController, type: :controller do
 
     describe "with invalid params" do
       before(:each) do
-        new_params = { title: "", price: 200}
+        @new_params = { title: "", price: 200}
         @advert = create(:advert)
         sign_in @advert.user
-        put :update, {id: @advert.to_param, advert: new_params}
+        put :update, {id: @advert.to_param, advert: @new_params}
         @advert.reload
       end
 
       it "does not update the advert" do
-        expect(@advert.title).to eq(attributes_for(:advert)[:title])
+        expect(@advert.title).to_not eq(@new_params["title"])
       end
 
       it "redirects the advert to the edit path" do

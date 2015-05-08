@@ -19,13 +19,8 @@ RSpec.feature "displaying adverts", type: :feature do
     newer_advert.update_attribute(:created_at, 5.minutes.from_now)
     older_advert.update_attribute(:created_at, 5.minutes.ago)
     visit adverts_path
-    # Checking markup order by finding the index of the title in the markup string.
-    # I want most recent on top, so new_idx < mid_idx < old_idx
-    new_idx = page.body.index(newer_advert.title)
-    mid_idx = page.body.index(advert.title)
-    old_idx = page.body.index(older_advert.title)
-    expect(new_idx).to be < mid_idx
-    expect(mid_idx).to be < old_idx
+    expect(newer_advert.title).to appear_before(advert.title)
+    expect(advert.title).to appear_before(older_advert.title)
   end
 
   it "Display's the advert's target price if present" do
