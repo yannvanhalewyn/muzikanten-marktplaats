@@ -41,13 +41,14 @@ $(document).on "ready page:load", ->
       # Push save the img id in the hidden form field for linking
       ids.push(data.result.id)
       $('#img_ids').val(ids)
+      data.context.attr('id', 'advert_img_' + data.result.id)
       # Add action to the delete button
       removeBtn = data.context.find('#delete-upload')
       removeBtn.click ->
         requestDelete data.result.id, ->
           data.context.hide()
           ids.splice(ids.indexOf(data.result.id), 1)
-          $('#photos_ids').val(ids)
+          $('#img_ids').val(ids)
 
 # $(document).on 'ready page:load', ->
 

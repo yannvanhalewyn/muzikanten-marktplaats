@@ -25,6 +25,9 @@ nl:
       comments: "reactie(s)"
       no-comments: "geen reacties"
 
+  images:
+    delete: "Verwijder"
+
   comments:
     title: "Comments"
     no-comments-yet: "Er zijn nog geen reacties geplaatst op deze advertentie."

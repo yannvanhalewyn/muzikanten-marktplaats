@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "uploading advert images", type: :feature, js: true, broken: false do
-
-  # I just give up. Sometimes it works, sometimes it doesn't.
-  # 10+ hrs is reason enough to just give in to the madness.
+RSpec.feature "uploading advert images", type: :feature, js: true do
 
   before do
     page.driver.block_unknown_urls
@@ -13,15 +10,6 @@ RSpec.feature "uploading advert images", type: :feature, js: true, broken: false
     # attach any files. This allows capy to find it!
     page.driver.execute_script("$('#add_image_field').removeClass('hide')")
   end
-
-  # I was having a REALLY hard time with synchronisation issues. I'm juggling
-  # javascript, jquery file-upload, carrierwave, sqlite locking etc.. And each of those players
-  # would give errors about some deep inconsistent system problems. I'm assuming I'm not stubbing
-  # those calls out correctly, and I absolutely know sleeping in tests is unacceptable.
-  # This is the only fix after 10+hours of trying that works in a consistent manner.
-  # after do
-  #   sleep 0.1
-  # end
 
   def attachFile filename
     path = File.join(Rails.root, 'spec/support/test-images', filename)
@@ -58,9 +46,11 @@ RSpec.feature "uploading advert images", type: :feature, js: true, broken: false
   end # end of describe on a new advert form
 
   describe "submitting the form" do
-    it "successfuly added all images to advert" do
+    before do
       fill_in "Titel", with: "Valid Title"
       fill_in "Beschrijving", with: "A valid long description"
+    end
+    it "successfuly added all images to advert" do
       attachFile 'test1.jpg'
       attachFile 'test2.jpg'
       click_button 'Opslaan'
@@ -68,8 +58,23 @@ RSpec.feature "uploading advert images", type: :feature, js: true, broken: false
         expect(page.all('.advert-image').count).to eq(2)
       end
     end
-
     it "doesn't link images that were linked and removed" do
+      attachFile 'test1.jpg'
+      attachFile 'test2.jpg'
+      within "#advert_img_1" do
+        click_button 'Verwijder'
+      end
+      click_button 'Opslaan'
+      within '.advert-images' do
+        expect(page.all('.advert-image').count).to eq(1)
+      end
     end
+  end # end of describe submitting the form
+
+  describe "editing an advert's images" do
+    before do
+
+    end
+
   end
 end

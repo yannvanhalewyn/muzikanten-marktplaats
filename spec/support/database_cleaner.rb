@@ -1,4 +1,3 @@
-
 RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
@@ -12,5 +11,4 @@ RSpec.configure do |config|
       example.run
     end
   end
-
 end
