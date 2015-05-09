@@ -1,0 +1,7 @@
+$('#adverts-listings').append('<%= j render @adverts %>');
+<% if @adverts.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @adverts %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

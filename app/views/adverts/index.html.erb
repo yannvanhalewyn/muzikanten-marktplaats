@@ -3,8 +3,8 @@
 <% end %>
 
 <h1><%= t("adverts.title") %></h1>
-<ul class="adverts">
-  <%= render partial: 'advert', collection: @adverts %>
+<ul id="adverts-listings">
+  <%= render @adverts %>
 </ul>
 
 <div id="infinite-scrolling">
