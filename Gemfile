@@ -32,6 +32,9 @@ gem 'omniauth-facebook', '~> 2.0.1'
 gem 'bootstrap-sass', '~> 3.3.4.1'
 gem 'autoprefixer-rails'
 
+# Infinite scrolling/pagination
+gem 'will_paginate', '~> 3.0.5'
+
 # Jquery file-upload
 gem 'jquery-fileupload-rails', '~> 0.4.5'
 

@@ -4,7 +4,6 @@ Models:
   TrackList
 
 Features:
-7
   1. Anyone can see all ads
   2. User can log in (via facebook)
   3. User can post an ad.
@@ -12,3 +11,6 @@ Features:
   5. Users can comment under an add in a facebook manner
   6. Adds can be organized and found by category
   7. Some types of adds could be Verkoop/Zoek Service/Instrument
+  # http://amix.dk/blog/post/19588
+  8. Maybe implement the reddit-algorithm for adding weight to adverts, displaying the hot one's on top, slowly dropping down as time progresses.
+

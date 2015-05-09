@@ -4,7 +4,7 @@
       <%= image_tag advert.images.first.asset.thumb.url %>
     <% end %>
     <h2><%= advert.title %></h2>
-    <p><%= advert.description %></p>
+    <p><%= truncate(advert.description, length: 400) %></p>
     <p><%= number_to_currency(advert.price, unit: "€") %></p>
     <small class="advert-timetag"><%= time_ago_in_words advert.created_at %> <%= t('general.ago') %> | </small>
     <small class="advert-comment-count">

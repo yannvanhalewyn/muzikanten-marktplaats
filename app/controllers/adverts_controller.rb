@@ -6,7 +6,12 @@ class AdvertsController < ApplicationController
 
 
   def index
-    @adverts = Advert.order("created_at DESC")
+    @adverts = Advert.paginate(page: params[:page], per_page: 10).order("created_at DESC")
+
+    respond_to do |wants|
+      wants.html  # render adverts/index.html.erb
+      wants.js    # render adverts/index.js.erb
+    end
   end
 
   def show
