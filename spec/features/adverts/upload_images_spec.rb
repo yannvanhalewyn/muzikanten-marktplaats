@@ -4,7 +4,8 @@ RSpec.feature "uploading advert images", type: :feature, js: true do
 
   before do
     page.driver.block_unknown_urls
-    sign_in build_stubbed(:user)
+    @user = create(:user)
+    sign_in @user
     visit new_advert_path
     # In production, the actual file field is hidden. But then capybara can't find it to
     # attach any files. This allows capy to find it!
@@ -73,7 +74,24 @@ RSpec.feature "uploading advert images", type: :feature, js: true do
 
   describe "editing an advert's images" do
     before do
+      @advert = create(:advert, user: @user)
+      create(:image, advert: @advert)
+      visit edit_advert_path @advert
+    end
 
+    it "deletes an images" do
+      within "#advert_img_1" do
+        find('.delete-button').click
+        wait_for_ajax
+      end
+      expect(page.all('.advert-image').count).to eq(0)
+    end
+
+    it "adds a new image" do
+      page.driver.execute_script("$('#add_image_field').removeClass('hide')")
+      attachFile 'test1.jpg'
+      expect(page.all('.advert-image').count).to eq(2)
+      expect(page).to have_content 'test1.jpg'
     end
 
   end

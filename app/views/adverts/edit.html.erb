@@ -1,6 +1,6 @@
 <div class="advert-images row">
   <% @advert.images.each do |image| %>
-    <div class="advert-image col-sm-3">
+    <div class="advert-image col-sm-3" id="advert_img_<%= image.id %>">
       <%= image_tag image.asset.medium.url %>
       <span class="delete-button" data-id=<%= image.id %>>&times;</span>
     </div>
