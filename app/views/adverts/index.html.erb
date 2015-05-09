@@ -6,3 +6,7 @@
 <ul class="adverts">
   <%= render partial: 'advert', collection: @adverts %>
 </ul>
+
+<div id="infinite-scrolling">
+  <%= will_paginate %>
+</div>

@@ -6,8 +6,9 @@ RSpec.describe AdvertsController, type: :controller do
   describe "GET index" do
 
     before do
+      user = build_stubbed(:user)
       15.times do
-        create(:advert)
+        create(:advert, user: user)
       end
       get :index
     end

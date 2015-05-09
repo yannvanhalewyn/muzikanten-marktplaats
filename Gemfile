@@ -34,6 +34,7 @@ gem 'autoprefixer-rails'
 
 # Infinite scrolling/pagination
 gem 'will_paginate', '~> 3.0.5'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 # Jquery file-upload
 gem 'jquery-fileupload-rails', '~> 0.4.5'

@@ -31,6 +31,10 @@ nl:
     add-comment: "Plaats Comment"
     not-logged-in: "Je moet ingelogd zijn om een comment te plaatsen"
 
+  will_paginate:
+    next_label: "Volgende"
+    previous_label: "Vorige"
+
   # Flash messages
   flash:
     add-advert-success: "Je advertentie is geplaatst!"
