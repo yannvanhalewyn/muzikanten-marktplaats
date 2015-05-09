@@ -4,8 +4,5 @@
 
 <h1><%= t("adverts.title") %></h1>
 <ul class="adverts">
-  <% @adverts.each do |advert| %>
-    <%= render partial: 'advert_listing', locals: { advert: advert }%>
-    <hr>
-  <% end %>
+  <%= render partial: 'advert', collection: @adverts %>
 </ul>

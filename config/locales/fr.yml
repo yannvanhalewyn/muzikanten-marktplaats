@@ -8,6 +8,7 @@ fr:
   # User page
   user:
     fb-profile: "Profile Facebook"
+    has-no-ads: "n'a pas d'annonces"
 
   # Show advert
   adverts:
@@ -19,6 +20,10 @@ fr:
     submit: "Sauvegarder"
     seller: "Vendeur"
     add-photos: "Ajouter des images"
+    listing:
+      ago: ""
+      comments: "commentaire(s)"
+      no-comments: "pas de commentaires"
 
   comments:
     title: "Commentaires"
