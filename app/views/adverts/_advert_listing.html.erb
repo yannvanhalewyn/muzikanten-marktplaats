@@ -6,9 +6,13 @@
     <h2><%= advert.title %></h2>
     <p><%= truncate(advert.description, length: 400) %></p>
     <p><%= number_to_currency(advert.price, unit: "€") %></p>
-    <small class="advert-timetag"><%= time_ago_in_words advert.created_at %> <%= t('general.ago') %> | </small>
+    <small class="advert-timetag"><%= time_ago_in_words advert.created_at %> <%= t('adverts.listing.ago') %> | </small>
     <small class="advert-comment-count">
-      <%= advert.comments.count %> <%= t('general.comments') %>
+      <% if advert.comments.any? %>
+        <%= advert.comments.count %> <%= t('adverts.listing.comments') %>
+      <% else %>
+        <%= t('adverts.listing.no-comments') %>
+      <% end %>
     </small>
   <% end %>
 </li>

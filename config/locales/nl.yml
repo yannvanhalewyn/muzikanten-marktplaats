@@ -1,8 +1,4 @@
 nl:
-  # General
-  general:
-    ago: "geleden"
-    comments: "reactie(s)"
 
   # Home page / Adverts index
   user-widget:
@@ -24,6 +20,10 @@ nl:
     submit: "Opslaan"
     seller: "Verkoper"
     add-photos: "Voeg afbeeldingen toe"
+    listing:
+      ago: "geleden"
+      comments: "reactie(s)"
+      no-comments: "geen reacties"
 
   comments:
     title: "Comments"

@@ -67,6 +67,12 @@ RSpec.feature "displaying adverts", type: :feature do
     end
   end
 
+  it "display's a custom message if no comments" do
+    within("#advert_#{advert.id}") do
+      expect(page).to have_content("geen reacties")
+    end
+  end
+
   it "links to an advert" do
     within("#advert_#{advert.id}") do
       click_link advert.title
