@@ -7,15 +7,25 @@ class Advert < ActiveRecord::Base
   validates :description, length: { minimum: 10 }
   validates :title, length: { minimum: 3 }
 
-  def sold?
-    !sold_at.blank?
+  # ======
+  # states
+  # ======
+  def for_sale?
+    self.state == "for_sale"
   end
-
-  def toggle_sold!
-    if sold?
-      update_attribute(:sold_at, nil)
-    else
-      update_attribute(:sold_at, Time.now)
-    end
+  def sold?
+    self.state == "sold"
+  end
+  def reserved?
+    self.state == "reserved"
+  end
+  def for_sale!
+    self.state = "for_sale"
+  end
+  def sold!
+    self.state = "sold"
+  end
+  def reserved!
+    self.state = "reserved"
   end
 end

@@ -33,36 +33,39 @@ RSpec.describe Advert, type: :model do
       expect(advert).to_not be_valid
     end
 
-    it "is not sold" do
-      expect(advert.sold?).to be_falsey
+    it "is for_sale by default" do
+      expect(advert.state).to eq("for_sale")
     end
   end
 
-  describe "#sold?" do
-    before do
-      advert.update_attribute(:sold_at, Time.now)
+  describe "states" do
+    it "#for_sale?" do
+      expect(advert.for_sale?).to be_truthy
+      advert.update_attribute(:state, "not_for_sale")
+      expect(advert.for_sale?).to be_falsey
     end
-
-    it "returns true when sold_at is set" do
+    it "#sold?" do
+      expect(advert.sold?).to be_falsey
+      advert.update_attribute(:state, "sold")
       expect(advert.sold?).to be_truthy
     end
-
-    it "returns false when sold_at is reset to null" do
-      advert.update_attribute(:sold_at, nil)
-      expect(advert.sold?).to be_falsey
+    it "#reserved?" do
+      expect(advert.reserved?).to be_falsey
+      advert.update_attribute(:state, "reserved")
+      expect(advert.reserved?).to be_truthy
     end
-  end
-
-  describe "#toggle_sold!" do
-    it "sets the sold_at value if not sold" do
-      advert.toggle_sold!
-      expect(advert.sold?).to be_truthy
+    it "#for_sale!" do
+      advert.update_attribute(:state, "not_for_sale")
+      advert.for_sale!
+      expect(advert.state).to eq("for_sale")
     end
-
-    it "sets the sold_at value to nil if sold" do
-      advert.update_attribute(:sold_at, Time.now)
-      advert.toggle_sold!
-      expect(advert.sold?).to be_falsey
+    it "#sold!" do
+      advert.sold!
+      expect(advert.state).to eq("sold")
+    end
+    it "#reserved!" do
+      advert.reserved!
+      expect(advert.state).to eq("reserved")
     end
   end
 

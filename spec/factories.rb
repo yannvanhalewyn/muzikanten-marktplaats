@@ -29,6 +29,7 @@ FactoryGirl.define do
       |n| "A valid advert title nr. #{n}"
     end
     description "A valid advert description"
+    state "for_sale"
 
     user
     factory :advert_with_price do
