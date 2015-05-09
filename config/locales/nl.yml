@@ -9,6 +9,7 @@ nl:
   # User page
   user:
     fb-profile: "Facebook Profiel"
+    has-no-ads: "heeft geen advertenties"
 
   # Show advert
   adverts:

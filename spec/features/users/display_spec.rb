@@ -12,6 +12,9 @@ RSpec.feature "User Profile", type: :feature do
     it "a link to the user's facebook profile" do
       expect(page).to have_selector("a[href$='#{user.fb_profile_url}']")
     end
+    it "a message if no adverts" do
+      expect(page).to have_content("#{user.first_name} heeft geen advertenties.")
+    end
   end
 
   describe "lists" do

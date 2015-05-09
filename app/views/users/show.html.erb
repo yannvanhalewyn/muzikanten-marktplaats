@@ -5,10 +5,14 @@
 <!-- The user's adverts -->
 <div class="user-adverts">
   <h1><%= @user.first_name %>'s <%= t('adverts.title') %></h1>
-  <ul class="adverts">
-    <% @user.adverts.order("created_at DESC").each do |advert| %>
-      <%= render partial: 'adverts/advert_listing', locals: { advert: advert }%>
-      <hr>
-    <% end %>
-  </ul>
+  <% if @user.adverts.any? %>
+    <ul class="adverts">
+      <% @user.adverts.order("created_at DESC").each do |advert| %>
+        <%= render partial: 'adverts/advert_listing', locals: { advert: advert }%>
+        <hr>
+      <% end %>
+    </ul>
+  <% else %>
+    <p><%= @user.first_name %> <%= t('user.has-no-ads') %>.</p>
+  <% end %>
 </div>
