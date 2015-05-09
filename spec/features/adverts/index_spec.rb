@@ -101,17 +101,26 @@ RSpec.feature "displaying adverts", type: :feature do
       end
       expect(page).to have_selector('.advert-listing', count: 5)
     end
-    context "javascript", js: true do
-      it "shows more adverts when scrolled to the bottom" do
-        expect(page).to have_selector('.advert-listing', count: 10)
-        page.execute_script "window.scrollBy(0,$(document).height())"
-        expect(page).to have_selector('.advert-listing', count: 15)
+  end
+
+  describe "infinite scrolling", js: true do
+    before do
+      user = build_stubbed(:user)
+      15.times do
+        create(:advert, user: user)
       end
-      it "doesn't show more adverts when not scrolled enough" do
-        expect(page).to have_selector('.advert-listing', count: 10)
-        page.execute_script "window.scrollBy(0,$(document).height()/5)"
-        expect(page).to have_selector('.advert-listing', count: 10)
-      end
+      page.driver.block_unknown_urls
+      visit adverts_path
+    end
+    it "shows more adverts when scrolled to the bottom" do
+      expect(page).to have_selector('.advert-listing', count: 10)
+      page.execute_script "window.scrollBy(0,$(document).height())"
+      expect(page).to have_selector('.advert-listing', count: 15)
+    end
+    it "doesn't show more adverts when not scrolled enough" do
+      expect(page).to have_selector('.advert-listing', count: 10)
+      page.execute_script "window.scrollBy(0,$(document).height()/5)"
+      expect(page).to have_selector('.advert-listing', count: 10)
     end
   end
 

@@ -20,7 +20,5 @@ RSpec.configure do |config|
 
   # don't run tests I marked broken
   config.filter_run_excluding :broken => true
-
-
 end
 

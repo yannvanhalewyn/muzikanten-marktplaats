@@ -71,8 +71,9 @@ RSpec.configure do |config|
   # ===================
   # Carrierwave cleanup
   # ===================
-  config.after(:each) do |config|
+  config.after(:suite) do |config|
    if Rails.env.test? || Rails.env.cucumber?
+     Rails.logger.debug "DELETED SPEC PUBLIC FOLDER"
       FileUtils.rm_rf(Dir["#{Rails.root}/public/spec/"])
     end
   end
