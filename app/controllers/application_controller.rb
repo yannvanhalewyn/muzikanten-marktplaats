@@ -6,23 +6,19 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :error
   before_filter :set_locale
   #before_filter :show_flash
+  include ApplicationHelper
+  helper_method :current_user
 
   private
   def set_locale
-    # Makro for transforming sth in double quotes into locale
-    # f"vf"S(itllxf"lx2F"ci"
     I18n.locale = "nl"
   end
+
   def show_flash
     flash[:success] = "Success"
     flash[:error] = "Success"
     flash[:notice] = "Success"
   end
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-  helper_method :current_user
 
   def require_user
     if !current_user

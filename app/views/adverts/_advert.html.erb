@@ -3,7 +3,12 @@
     <% if advert.images.any?  %>
       <%= image_tag advert.images.first.asset.thumb.url %>
     <% end %>
-    <h2><%= advert.title %></h2>
+    <h2>
+      <%= advert.title %>
+      <% unless advert.for_sale?  %>
+        <small> <%= t("adverts.state.#{advert.state}") %> </small>
+      <% end %>
+    </h2>
     <p><%= truncate(advert.description, length: 400) %></p>
     <p><%= number_to_currency(advert.price, unit: "€") %></p>
     <small class="advert-timetag"><%= time_ago_in_words advert.created_at %> <%= t('adverts.listing.ago') %> | </small>

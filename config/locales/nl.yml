@@ -24,6 +24,10 @@ nl:
       ago: "geleden"
       comments: "reactie(s)"
       no-comments: "geen reacties"
+    state:
+      for_sale: "Te koop"
+      sold: "Verkocht"
+      reserved: "Gereserveerd"
 
   images:
     delete: "Verwijder"
