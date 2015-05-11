@@ -10,22 +10,14 @@ class Advert < ActiveRecord::Base
   # ======
   # states
   # ======
-  def for_sale?
-    self.state == "for_sale"
-  end
-  def sold?
-    self.state == "sold"
-  end
-  def reserved?
-    self.state == "reserved"
-  end
-  def for_sale!
-    self.state = "for_sale"
-  end
-  def sold!
-    self.state = "sold"
-  end
-  def reserved!
-    self.state = "reserved"
+  %w{ for_sale reserved sold }.each do |state|
+    define_method("#{state}?") do
+      self.state == state
+    end
+
+    define_method("#{state}!") do
+      self.state = state
+      self.save
+    end
   end
 end
