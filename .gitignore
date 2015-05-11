@@ -18,3 +18,6 @@
 
 # ignore uploaded images
 public/uploads/
+
+# ignore coverage reports
+coverage/

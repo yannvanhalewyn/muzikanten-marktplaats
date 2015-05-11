@@ -62,5 +62,5 @@ group :test do
   gem 'capybara-webkit', '~> 1.5.1'
   gem 'database_cleaner'
   gem 'orderly', '~> 0.0.2'
-  #gem 'selenium-webdriver', '~> 2.45.0'
+  gem 'simplecov', :require => false
 end
