@@ -19,7 +19,7 @@
   <% end %>
 </div>
 
-<!-- The advert content -->
+<!-- The advert title -->
 <p><%= @advert.description %></p>
 <% if @advert.price %>
   <p><%= t("adverts.target-price") %>: <%= number_to_currency(@advert.price, unit: "€") %></p>

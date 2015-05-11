@@ -80,10 +80,15 @@ describe "adverts/index" do
       render partial: "advert", locals: { advert: advert }
       expect(rendered).to have_content("geen reacties")
     end
+    it "displays the advert state if not for_sale" do
+      advert.state = "sold"
+      render partial: "advert", locals: { advert: advert }
+      expect(rendered).to have_content /verkocht/i
+      expect(rendered).to_not have_content /te koop/i
+    end
+    it "displays the advert state if not for_sale" do
+      render partial: "advert", locals: { advert: advert }
+      expect(rendered).to_not have_content /te koop/i
+    end
   end
-
-  # it "displays the advert state if not for_sale" do
-  #   expect(rendered).to have_content /verkocht/i
-  #   expect(rendered).to_not have_content /te koop/i
-  # end
 end

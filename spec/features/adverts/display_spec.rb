@@ -12,39 +12,12 @@ RSpec.feature "advert page", type: :feature do
       expect(page).to have_content(advert.description)
     end
 
-    it "a message when no price is specified" do
-      expect(page).to have_content("Prijs is niet gespecifiëerd")
-    end
-
-    it "the correct price if specified" do
-      advert.update_attribute(:price, 200)
-      visit advert_path(advert)
-      expect(page).to have_content(200)
-    end
-
-    it "the author's name and profile picture" do
-      within '.seller-widget' do
-        expect(page).to have_selector("img[src$='#{user.image}']")
-        expect(page).to have_content(user.name)
-      end
-    end
-
     it "the images linked to the ad" do
       img = advert.images.create(attributes_for(:image))
       visit advert_path(advert)
       within '.advert-images' do
         expect(page.all('.advert-image').count).to eq(1)
         expect(page).to have_selector("img[src$='#{img.asset.medium.url}']")
-      end
-    end
-  end
-
-  context "the seller-widget" do
-    let (:user) { advert.user }
-    before { visit advert_path(advert) }
-    it "links to the seller page" do
-      within '.seller-widget' do
-        expect(page).to have_selector("a[href$='#{user_path(user)}']")
       end
     end
   end
