@@ -24,7 +24,9 @@ RSpec.feature "advert page", type: :feature do
 
   context "when logged out" do
     before { visit advert_path(advert) }
-
+    it "doensn't have an author-options section" do
+      expect(page).to_not have_selector("#author-options")
+    end
     it "doesn't show the edit/delete button" do
       expect(page).to_not have_selector(:link_or_button,
                                       text: /bewerk|verwijder/i )
@@ -33,15 +35,30 @@ RSpec.feature "advert page", type: :feature do
 
   describe "when logged in" do
     context "as the author" do
-      it "shows the edit and delete button" do
+      before do
         sign_in advert.user
         visit advert_path(advert)
+      end
+      it "has a author-options section" do
+        expect(page).to have_selector("#author-options")
+        expect(page).to have_content("Verkoper opties")
+      end
+      it "shows the edit and delete button" do
         expect(page).to have_selector(:link_or_button, text: /bewerk/i)
         expect(page).to have_selector(:link_or_button, text: /verwijder/i)
+      end
+      it "shows the current state" do
+        expect(page).to have_content "Status: Te koop"
       end
     end
 
     context "as another user" do
+      it "doensn't have an author-options section" do
+        sign_in create(:user)
+        visit advert_path(advert)
+        expect(page).to_not have_selector("#author-options")
+        expect(page).to_not have_content("Verkoper opties")
+      end
       it "doesn't show the edit/delete button" do
         sign_in create(:user)
         visit advert_path(advert)

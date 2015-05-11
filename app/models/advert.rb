@@ -10,7 +10,9 @@ class Advert < ActiveRecord::Base
   # ======
   # states
   # ======
-  %w{ for_sale reserved sold }.each do |state|
+  STATES = %w{for_sale reserved sold }
+
+  STATES.each do |state|
     define_method("#{state}?") do
       self.state == state
     end
@@ -19,5 +21,8 @@ class Advert < ActiveRecord::Base
       self.state = state
       self.save
     end
+  end
+  def other_states
+    STATES - [self.state]
   end
 end

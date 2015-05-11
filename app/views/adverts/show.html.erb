@@ -34,10 +34,14 @@
 
 <!-- The author links -->
 <% if current_user == @advert.user %>
-  <%= link_to t("adverts.edit"), edit_advert_path(@advert) %>
-  <%= link_to t("adverts.delete"), advert_path(@advert),
-                    method: :delete,
-                    data: {confirm: t("alert.confirm-delete")} %>
+  <div id="author-options" style="border: 1px solid grey; padding: 10px">
+    <h2><%= t('adverts.seller-options') %></h2>
+    <p> <strong>Status:</strong> <%= t("adverts.state.#{@advert.state}") %></p>
+    <%= link_to t("adverts.edit"), edit_advert_path(@advert) %>
+    <%= link_to t("adverts.delete"), advert_path(@advert),
+                      method: :delete,
+                      data: {confirm: t("alert.confirm-delete")} %>
+  </div>
 <% end %>
 
 <div class="comment-section">
