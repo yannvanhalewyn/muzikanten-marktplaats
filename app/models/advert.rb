@@ -22,4 +22,12 @@ class Advert < ActiveRecord::Base
       self.save
     end
   end
+
+  # ======
+  # Search
+  # ======
+  searchable do
+    text :title, boost: 3
+    :description
+  end
 end

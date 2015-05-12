@@ -13,24 +13,26 @@ RSpec.describe AdvertsController, type: :controller do
       15.times do
         create(:advert, user: user)
       end
-      get :index
     end
-    it "assigns 10 last adverts as @adverts" do
-      expect(assigns(:adverts).to_a.count).to eq(10)
-      expect(assigns(:adverts).first).to eq(Advert.last)
-    end
-    it "assignes the last 5 on page 2" do
-      get :index, page: 2
-      expect(assigns(:adverts).to_a.count).to eq(5)
-      expect(assigns(:adverts).last).to eq(Advert.first)
-    end
+    context "without search params" do
+      before { get :index }
+      it "assigns 10 last adverts as @adverts" do
+        expect(assigns(:adverts).to_a.count).to eq(10)
+        expect(assigns(:adverts).first).to eq(Advert.last)
+      end
+      it "assignes the last 5 on page 2" do
+        get :index, page: 2
+        expect(assigns(:adverts).to_a.count).to eq(5)
+        expect(assigns(:adverts).last).to eq(Advert.first)
+      end
 
-    it "renders the index template" do
-      expect(response).to render_template :index
-    end
-    it "responds to ajax" do
-      xhr :get, :index
-      expect(response.content_type).to eq(Mime::JS)
+      it "renders the index template" do
+        expect(response).to render_template :index
+      end
+      it "responds to ajax" do
+        xhr :get, :index
+        expect(response.content_type).to eq(Mime::JS)
+      end
     end
   end
 

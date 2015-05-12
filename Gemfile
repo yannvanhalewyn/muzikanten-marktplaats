@@ -43,6 +43,12 @@ gem 'jquery-fileupload-rails', '~> 0.4.5'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.2.3'
 
+# search engine
+gem 'sunspot_rails'
+group :development do
+  gem 'sunspot_solr'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

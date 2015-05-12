@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   private
   def set_locale
-    I18n.locale = "fr"
+    I18n.locale = "nl"
   end
 
   def show_flash
