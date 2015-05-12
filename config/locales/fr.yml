@@ -24,6 +24,13 @@ fr:
       ago: ""
       comments: "commentaire(s)"
       no-comments: "pas de commentaires"
+    state:
+      for_sale: "A vendre"
+      reserved: "Réservé"
+      sold: "Vendu"
+
+  images:
+    delete: "Effacer"
 
   comments:
     title: "Commentaires"
@@ -31,12 +38,19 @@ fr:
     add-comment: "Ajouter Commentaire"
     not-logged-in: "Vous devez être connectés pour ajouter un commentaire."
 
+  will_paginate:
+    next_label: "Prochain"
+    previous_label: "Précedent"
+
   # Flash messages
   flash:
     add-advert-success: "Votre annonce est postée!"
     add-advert-fail: "Votre annonce n'a pas pu être postée. Réessayez plus tard!"
     edit-advert-success: "Votre annonce à été modifiée!"
     edit-advert-fail: "Votre annonce n'a pas pu être modifiée. Réessayez plus tard!"
+    update-advert-for-sale: "Votre annonce est en vente."
+    update-advert-reserved: "Votre annonce est réservée"
+    update-advert-sold: "Votre annonce est vendue. Félicitations!"
     delete-advert-success: "Votre annonce à été effacée!"
     add-comment-success: "Votre commentaire à été postée!"
     add-comment-fail: "Votre commentaire n'a pas pu être postée."

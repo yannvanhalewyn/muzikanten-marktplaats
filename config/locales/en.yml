@@ -24,6 +24,13 @@ en:
       ago: "ago"
       comments: "comment(s)"
       no-comments: "no comments"
+    state:
+      for_sale: "For sale"
+      reserved: "Reserved"
+      sold: "Sold"
+
+  images:
+    delete: "Delete"
 
   comments:
     title: "Comments"
@@ -37,6 +44,9 @@ en:
     add-advert-fail: "Your ad could not be saved. Try again later!"
     edit-advert-success: "Your ad has been edited."
     edit-advert-fail: "Your ad could not be edited. Try again later!"
+    update-advert-for-sale: "Your ad is for sale."
+    update-advert-reserved: "Your ad has been reserved."
+    update-advert-sold: "Your ad has been sold! Congratulations!"
     delete-advert-success: "Your ad has been deleted!"
     add-comment-success: "Your comment was saved."
     add-comment-fail: "Your comment could not be saved."

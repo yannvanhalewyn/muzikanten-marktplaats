@@ -27,8 +27,8 @@ nl:
       no-comments: "geen reacties"
     state:
       for_sale: "Te koop"
-      sold: "Verkocht"
       reserved: "Gereserveerd"
+      sold: "Verkocht"
 
   images:
     delete: "Verwijder"
