@@ -36,7 +36,6 @@ RSpec.feature "uploading advert images", type: :feature, js: true do
 
     context "selecting an invalid file type" do
       it "doesn't persist" do
-        Image.all.each { |i| puts i.asset.url }
         # this is a fucked up database_cleaner bug, it doesn't clean
         imageCount = Image.count
         attachFile('invalid.pdf')

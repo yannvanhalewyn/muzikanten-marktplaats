@@ -47,10 +47,96 @@ RSpec.feature "advert page", type: :feature do
         expect(page).to have_selector(:link_or_button, text: /bewerk/i)
         expect(page).to have_selector(:link_or_button, text: /verwijder/i)
       end
-      it "shows the current state" do
-        expect(page).to have_content "Status: Te koop"
-      end
-    end
+
+      # ======
+      # states
+      # ======
+      describe "states" do
+
+        context "for_sale" do
+          it "displays For Sale as span" do
+            within "#author-options" do
+              expect(page).to have_selector("span", text: /te koop/i)
+              expect(page).to_not have_link("Te koop")
+            end
+          end
+
+          it "links to reserve" do
+            expect(page).to_not have_selector("span", text: /gereserveerd/i)
+            within "#author-options" do
+              click_link "Gereserveerd"
+            end
+            expect(page).to have_content("Je advertentie is gereserveerd")
+          end
+
+          it "links to sell" do
+            expect(page).to_not have_selector("span", text: /verkocht/i)
+            within "#author-options" do
+              click_link "Verkocht"
+            end
+            expect(page).to have_content("Je advertentie is verkocht")
+          end
+        end # end of context for sale
+
+        context "reserved" do
+          before do
+            advert.reserved!
+            visit advert_path advert
+          end
+          it "displays Reserved as span" do
+            within "#author-options" do
+              expect(page).to have_selector("span", text: /gereserveerd/i)
+              expect(page).to_not have_link("Gereserveerd")
+            end
+          end
+
+          it "links to for_sale" do
+            expect(page).to_not have_selector("span", text: /te koop/i)
+            within "#author-options" do
+              click_link "Te koop"
+            end
+            expect(page).to have_content("Je advertentie staat nu te koop")
+          end
+
+          it "links to sell" do
+            expect(page).to_not have_selector("span", text: /verkocht/i)
+            within "#author-options" do
+              click_link "Verkocht"
+            end
+            expect(page).to have_content("Je advertentie is verkocht")
+          end
+        end # end of context reserved
+
+        context "sold" do
+          before do
+            advert.sold!
+            visit advert_path advert
+          end
+          it "displays Sold as span" do
+            within "#author-options" do
+              expect(page).to have_selector("span", text: /verkocht/i)
+              expect(page).to_not have_link("Verkocht")
+            end
+          end
+
+          it "links to for_sale" do
+            expect(page).to_not have_selector("span", text: /te koop/i)
+            within "#author-options" do
+              click_link "Te koop"
+            end
+            expect(page).to have_content("Je advertentie staat nu te koop")
+          end
+
+          it "links to reserved" do
+            expect(page).to_not have_selector("span", text: /gereserveerd/i)
+            within "#author-options" do
+              click_link "Gereserveerd"
+            end
+            expect(page).to have_content("Je advertentie is gereserveerd")
+          end
+        end # end of context sold
+      end # end of describe states
+    end # end of context as the author
 
     context "as another user" do
       it "doensn't have an author-options section" do

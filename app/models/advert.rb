@@ -22,7 +22,4 @@ class Advert < ActiveRecord::Base
       self.save
     end
   end
-  def other_states
-    STATES - [self.state]
-  end
 end

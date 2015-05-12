@@ -11,7 +11,6 @@ RSpec.describe Image, type: :model do
     end
     it "saves the image locally" do
       path = File.join(Rails.root, 'public', image.asset.url)
-      puts path
       expect(File).to exist(path)
     end
   end

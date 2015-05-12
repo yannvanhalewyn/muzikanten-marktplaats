@@ -67,19 +67,6 @@ RSpec.describe Advert, type: :model do
       advert.reserved!
       expect(advert.state).to eq("reserved")
     end
-    describe "#other_states" do
-      it "returns reserved and sold  when adver is for_sale" do
-        expect(advert.other_states).to eq(["reserved", "sold"])
-      end
-      it "returns for_sale and sold when advert is reserved" do
-        advert.reserved!
-        expect(advert.other_states).to eq(["for_sale", "sold"])
-      end
-      it "returns for_sale and reserved when advert is sold" do
-        advert.sold!
-        expect(advert.other_states).to eq(["for_sale", "reserved"])
-      end
-    end
   end
 
   describe "#destroy" do
