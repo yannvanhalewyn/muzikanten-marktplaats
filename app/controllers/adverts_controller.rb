@@ -1,8 +1,11 @@
 class AdvertsController < ApplicationController
 
   before_action :require_user, only: [:create, :new]
-  before_action :find_advert, only: [:show, :edit, :update, :destroy]
-  before_action :require_author, only: [:edit, :update, :destroy]
+  before_action :find_advert, only: [:show, :edit, :update,
+                                      :set_for_sale, :reserve, :sell,
+                                      :destroy]
+  before_action :require_author, only: [:edit, :update, :set_for_sale,
+                                        :reserve, :sell, :destroy]
 
 
   def index
@@ -46,6 +49,21 @@ class AdvertsController < ApplicationController
     else
       redirect_to edit_advert_path(@advert), error: t("flash.edit-advert-fail")
     end
+  end
+
+  def set_for_sale
+    @advert.for_sale!
+    redirect_to advert_path(@advert), success: t("flash.update-advert-for-sale")
+  end
+
+  def reserve
+    @advert.reserved!
+    redirect_to advert_path(@advert), success: t("flash.update-advert-reserved")
+  end
+
+  def sell
+    @advert.sold!
+    redirect_to advert_path(@advert), success: t("flash.update-advert-sold")
   end
 
   def destroy

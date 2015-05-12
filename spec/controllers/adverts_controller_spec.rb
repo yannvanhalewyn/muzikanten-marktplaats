@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe AdvertsController, type: :controller do
 
 
+  # =========
+  # GET INDEX
+  # =========
   describe "GET index" do
 
     before do
@@ -31,6 +34,9 @@ RSpec.describe AdvertsController, type: :controller do
     end
   end
 
+  # ========
+  # GET SHOW
+  # ========
   describe "GET show" do
     let(:advert) { create(:advert) }
     before { get :show, id: advert.id }
@@ -43,6 +49,9 @@ RSpec.describe AdvertsController, type: :controller do
     end
   end
 
+  # =======
+  # GET NEW
+  # =======
   describe "GET new" do
     context("logged out") do
       it "redirects to root path" do
@@ -66,6 +75,9 @@ RSpec.describe AdvertsController, type: :controller do
     end
   end
 
+  # ========
+  # GET EDIT
+  # ========
   describe "GET edit" do
     let(:advert) { create(:advert) }
     it "assigns a the correct advert to @advert" do
@@ -154,6 +166,9 @@ RSpec.describe AdvertsController, type: :controller do
     end
   end
 
+  # ==========
+  # PUT UPDATE
+  # ==========
   describe "PUT update" do
 
     it "fails when no user logged in" do
@@ -219,6 +234,113 @@ RSpec.describe AdvertsController, type: :controller do
     end
   end # end of PUT update
 
+
+  # ================
+  # PUT SET_FOR_SALE
+  # ================
+  describe "PUT set_for_sale" do
+    context "logged in as owner" do
+      before do
+        @advert = create(:advert, state: "sold")
+        sign_in @advert.user
+        put :set_for_sale, {id: @advert.to_param}
+      end
+      it "changes the advert state to for_sale" do
+        expect(@advert.reload.for_sale?).to be_truthy
+      end
+      it "redirects to the advert page with flash success message" do
+        expect(response).to redirect_to(advert_path @advert)
+        expect(flash[:success]).to have_content(/je advertentie staat nu te koop/i)
+      end
+    end
+    context "logged in as other user" do
+      before do
+        @advert = create(:advert, state: "sold")
+        sign_in build(:user)
+        put :set_for_sale, {id: @advert.to_param}
+      end
+      it "doesn't change the advert state" do
+        expect(@advert.reload.for_sale?).to be_falsey
+      end
+      it "redirects to root page" do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+
+  # ===========
+  # PUT RESERVE
+  # ===========
+  describe "PUT reserve" do
+    context "logged in as owner" do
+      before do
+        @advert = create(:advert)
+        sign_in @advert.user
+        put :reserve, {id: @advert.to_param}
+      end
+      it "changes the advert state to for_sale" do
+        expect(@advert.reload.reserved?).to be_truthy
+      end
+      it "redirects to the advert page with flash success message" do
+        expect(response).to redirect_to(advert_path @advert)
+        expect(flash[:success]).to have_content(/je advertentie is gereserveerd/i)
+      end
+    end
+    context "logged in as other user" do
+      before do
+        @advert = create(:advert)
+        sign_in build(:user)
+        put :reserve, {id: @advert.to_param}
+      end
+      it "doesn't change the advert state" do
+        expect(@advert.reload.reserved?).to be_falsey
+      end
+      it "redirects to root page" do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+
+  # ========
+  # PUT SELL
+  # ========
+  describe "PUT sell" do
+    context "logged in as owner" do
+      before do
+        @advert = create(:advert)
+        sign_in @advert.user
+        put :sell, {id: @advert.to_param}
+      end
+      it "changes the advert state to for_sale" do
+        expect(@advert.reload.sold?).to be_truthy
+      end
+      it "redirects to the advert page with flash success message" do
+        expect(response).to redirect_to(advert_path @advert)
+        expect(flash[:success]).to have_content(/je advertentie is verkocht/i)
+      end
+    end
+    context "logged in as other user" do
+      before do
+        @advert = create(:advert)
+        sign_in build(:user)
+        put :sell, {id: @advert.to_param}
+      end
+      it "doesn't change the advert state" do
+        expect(@advert.reload.sold?).to be_falsey
+      end
+      it "redirects to root page" do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+
+
+  # ==============
+  # DELETE DESTROY
+  # ==============
   describe "DELETE destroy" do
 
     let!(:advert) { create(:advert) }
@@ -226,7 +348,7 @@ RSpec.describe AdvertsController, type: :controller do
       delete :destroy, {id: advert.to_param}
     end
 
-    context "without author" do
+    context "without incorrect author" do
       it "redirects to root when not logged in" do
         sign_in create(:user)
         destroyAdvert advert

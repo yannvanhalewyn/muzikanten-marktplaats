@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root to: "adverts#index"
 
   resources :adverts do
-    resources :comments
+    member do
+      put :set_for_sale
+      put :reserve
+      put :sell
+    end
+    resources :comments, only: [:create] # user shallow: true if more
   end
   resources :images, only: [:create, :destroy]
 
