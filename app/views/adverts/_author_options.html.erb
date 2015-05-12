@@ -1,0 +1,19 @@
+<div id="author-options" class="panel panel-warning">
+  <div class="panel-heading">
+    <%= t('adverts.seller-options') %>
+  </div>
+
+  <div class="panel-body">
+    <p> <strong>Status: </strong>
+      <%= state_link_or_span "for_sale" %> |
+      <%= state_link_or_span "reserved" %> |
+      <%= state_link_or_span "sold" %>
+    </p>
+    <%= link_to t("adverts.edit"), edit_advert_path(@advert),
+                      class: "btn btn-warning" %>
+    <%= link_to t("adverts.delete"), advert_path(@advert),
+                      method: :delete,
+                      class: "btn btn-danger",
+                      data: {confirm: t("alert.confirm-delete")} %>
+  </div>
+</div>

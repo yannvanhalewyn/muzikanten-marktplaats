@@ -1,34 +1,9 @@
 <!-- The author links -->
 <% if current_user == @advert.user %>
-  <div id="author-options" class="panel panel-warning">
-    <div class="panel-heading">
-      <%= t('adverts.seller-options') %>
-    </div>
-
-    <div class="panel-body">
-      <p> <strong>Status: </strong>
-        <%= state_link_or_span "for_sale" %> |
-        <%= state_link_or_span "reserved" %> |
-        <%= state_link_or_span "sold" %>
-      </p>
-      <%= link_to t("adverts.edit"), edit_advert_path(@advert),
-                        class: "btn btn-warning" %>
-      <%= link_to t("adverts.delete"), advert_path(@advert),
-                        method: :delete,
-                        class: "btn btn-danger",
-                        data: {confirm: t("alert.confirm-delete")} %>
-    </div>
-  </div>
-  <!-- The seller widget -->
+  <%= render 'author_options' %>
+<!-- The seller widget -->
 <% else %>
-  <div id="seller-widget">
-    <%= link_to user_path @advert.user do %>
-      <h2><%= t("adverts.seller") %></h2>
-      <img src="<%= @advert.user.image %>" alt="">
-      <p class="seller-name"><%= @advert.user.name %></p>
-    <% end %>
-  </div>
-
+  <%= render 'seller_widget' %>
 <% end %>
 
 <!-- The advert title -->
