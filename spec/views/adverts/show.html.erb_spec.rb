@@ -45,10 +45,30 @@ describe "adverts/show" do
     expect(rendered).to_not have_content("Te koop")
   end
 
-  it "has a link to the seller's page" do
-    user = build_stubbed(:user)
-    assign(:advert, build_stubbed(:advert, user: user))
-    render
-    expect(rendered).to have_selector("a[href$='#{user_path(user)}']")
+  context "logged in as author" do
+    it "doesn't show the seller's(you) page widget" do
+      advert = build_stubbed(:advert)
+      allow(view).to receive(:current_user).and_return(advert.user)
+      assign(:advert, advert)
+      render
+      expect(rendered).to_not have_selector('#seller-widget')
+    end
+  end
+
+  context "logged in as other user" do
+    before do
+      @user = build_stubbed(:user)
+      assign(:advert, build_stubbed(:advert, user: @user))
+      render
+    end
+
+    it "shows the seller's info" do
+      expect(rendered).to have_selector("#seller-widget")
+      expect(rendered).to have_content(@user.name)
+    end
+
+    it "has a link to the seller's page" do
+      expect(rendered).to have_selector("a[href$='#{user_path(@user)}']")
+    end
   end
 end

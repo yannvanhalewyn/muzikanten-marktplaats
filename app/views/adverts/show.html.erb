@@ -1,11 +1,51 @@
-<!-- The seller widget -->
-<div class="seller-widget">
-  <%= link_to user_path @advert.user do %>
-    <h2><%= t("adverts.seller") %></h2>
-    <img src="<%= @advert.user.image %>" alt="">
-    <p class="seller-name"><%= @advert.user.name %></p>
-  <% end %>
-</div>
+<!-- The author links -->
+<% if current_user == @advert.user %>
+  <div id="author-options" class="panel panel-warning">
+    <div class="panel-heading">
+      <%= t('adverts.seller-options') %>
+    </div>
+
+    <div class="panel-body">
+      <p> <strong>Status: </strong>
+        <% if @advert.for_sale? %>
+          <span><%= t("adverts.state.for_sale") %></span>
+        <% else %>
+          <%= link_to t("adverts.state.for_sale"), set_for_sale_advert_path(@advert), method: :put %>
+        <% end %>
+        |
+        <% if @advert.reserved? %>
+          <span><%= t("adverts.state.reserved") %></span>
+        <% else %>
+          <%= link_to "Gereserveerd", reserve_advert_path(@advert),
+                        method: :put %>
+        <% end %>
+        |
+        <% if @advert.sold? %>
+          <span><%= t("adverts.state.sold") %></span>
+        <% else %>
+          <%= link_to "Verkocht", sell_advert_path(@advert),
+                        method: :put %>
+        <% end %>
+      </p>
+      <%= link_to t("adverts.edit"), edit_advert_path(@advert),
+                        class: "btn btn-warning" %>
+      <%= link_to t("adverts.delete"), advert_path(@advert),
+                        method: :delete,
+                        class: "btn btn-danger",
+                        data: {confirm: t("alert.confirm-delete")} %>
+    </div>
+  </div>
+  <!-- The seller widget -->
+<% else %>
+  <div id="seller-widget">
+    <%= link_to user_path @advert.user do %>
+      <h2><%= t("adverts.seller") %></h2>
+      <img src="<%= @advert.user.image %>" alt="">
+      <p class="seller-name"><%= @advert.user.name %></p>
+    <% end %>
+  </div>
+
+<% end %>
 
 <!-- The advert title -->
 <h1 class="advert-title">
@@ -24,47 +64,13 @@
   <% end %>
 </div>
 
+
 <!-- The advert info -->
 <p><%= @advert.description %></p>
 <% if @advert.price %>
   <p><%= t("adverts.target-price") %>: <%= number_to_currency(@advert.price, unit: "€") %></p>
 <% else %>
   <p>Prijs is niet gespecifiëerd</p>
-<% end %>
-
-<!-- The author links -->
-<% if current_user == @advert.user %>
-  <div id="author-options" style="border: 1px solid grey; padding: 10px">
-    <h2><%= t('adverts.seller-options') %></h2>
-
-    <p> <strong>Status: </strong>
-      <% if @advert.for_sale? %>
-        <span><%= t("adverts.state.for_sale") %></span>
-      <% else %>
-        <%= link_to t("adverts.state.for_sale"), set_for_sale_advert_path(@advert), method: :put %>
-      <% end %>
-      <% if @advert.reserved? %>
-        <span><%= t("adverts.state.reserved") %></span>
-      <% else %>
-        <%= link_to "Gereserveerd", reserve_advert_path(@advert),
-                      method: :put %> |
-      <% end %>
-
-      <% if @advert.sold? %>
-        <span><%= t("adverts.state.sold") %></span>
-      <% else %>
-        <%= link_to "Verkocht", sell_advert_path(@advert),
-                      method: :put %> |
-      <% end %>
-    </p>
-    <br>
-    <%= link_to t("adverts.edit"), edit_advert_path(@advert),
-                      class: "btn btn-warning" %>
-    <%= link_to t("adverts.delete"), advert_path(@advert),
-                      method: :delete,
-                      class: "btn btn-danger",
-                      data: {confirm: t("alert.confirm-delete")} %>
-  </div>
 <% end %>
 
 <!-- Comment section -->
