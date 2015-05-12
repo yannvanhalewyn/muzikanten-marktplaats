@@ -7,25 +7,9 @@
 
     <div class="panel-body">
       <p> <strong>Status: </strong>
-        <% if @advert.for_sale? %>
-          <span><%= t("adverts.state.for_sale") %></span>
-        <% else %>
-          <%= link_to t("adverts.state.for_sale"), set_for_sale_advert_path(@advert), method: :put %>
-        <% end %>
-        |
-        <% if @advert.reserved? %>
-          <span><%= t("adverts.state.reserved") %></span>
-        <% else %>
-          <%= link_to "Gereserveerd", reserve_advert_path(@advert),
-                        method: :put %>
-        <% end %>
-        |
-        <% if @advert.sold? %>
-          <span><%= t("adverts.state.sold") %></span>
-        <% else %>
-          <%= link_to "Verkocht", sell_advert_path(@advert),
-                        method: :put %>
-        <% end %>
+        <%= state_link_or_span "for_sale" %> |
+        <%= state_link_or_span "reserved" %> |
+        <%= state_link_or_span "sold" %>
       </p>
       <%= link_to t("adverts.edit"), edit_advert_path(@advert),
                         class: "btn btn-warning" %>
