@@ -53,28 +53,30 @@ RSpec.feature "advert page", type: :feature do
       # ======
       describe "states" do
 
+        def links_to_state state, success_msg
+          expect(page).to_not have_selector("span", text: state)
+          within "#author-options" do
+            click_link state
+          end
+          expect(page).to have_content(success_msg)
+        end
+
+        def displays_state state
+          within "#author-options" do
+            expect(page).to have_selector("span", text: state)
+            expect(page).to_not have_link(state)
+          end
+        end
+
         context "for_sale" do
           it "displays For Sale as span" do
-            within "#author-options" do
-              expect(page).to have_selector("span", text: /te koop/i)
-              expect(page).to_not have_link("Te koop")
-            end
+            displays_state "Te koop"
           end
-
           it "links to reserve" do
-            expect(page).to_not have_selector("span", text: /gereserveerd/i)
-            within "#author-options" do
-              click_link "Gereserveerd"
-            end
-            expect(page).to have_content("Je advertentie is gereserveerd")
+            links_to_state "Gereserveerd", "Je advertentie is gereserveerd"
           end
-
           it "links to sell" do
-            expect(page).to_not have_selector("span", text: /verkocht/i)
-            within "#author-options" do
-              click_link "Verkocht"
-            end
-            expect(page).to have_content("Je advertentie is verkocht")
+            links_to_state "Verkocht", "Je advertentie is verkocht"
           end
         end # end of context for sale
 
@@ -84,26 +86,13 @@ RSpec.feature "advert page", type: :feature do
             visit advert_path advert
           end
           it "displays Reserved as span" do
-            within "#author-options" do
-              expect(page).to have_selector("span", text: /gereserveerd/i)
-              expect(page).to_not have_link("Gereserveerd")
-            end
+            displays_state "Gereserveerd"
           end
-
           it "links to for_sale" do
-            expect(page).to_not have_selector("span", text: /te koop/i)
-            within "#author-options" do
-              click_link "Te koop"
-            end
-            expect(page).to have_content("Je advertentie staat nu te koop")
+            links_to_state "Te koop", "Je advertentie staat nu te koop"
           end
-
           it "links to sell" do
-            expect(page).to_not have_selector("span", text: /verkocht/i)
-            within "#author-options" do
-              click_link "Verkocht"
-            end
-            expect(page).to have_content("Je advertentie is verkocht")
+            links_to_state "Verkocht", "Je advertentie is verkocht"
           end
         end # end of context reserved
 
@@ -113,26 +102,13 @@ RSpec.feature "advert page", type: :feature do
             visit advert_path advert
           end
           it "displays Sold as span" do
-            within "#author-options" do
-              expect(page).to have_selector("span", text: /verkocht/i)
-              expect(page).to_not have_link("Verkocht")
-            end
+            displays_state "Verkocht"
           end
-
           it "links to for_sale" do
-            expect(page).to_not have_selector("span", text: /te koop/i)
-            within "#author-options" do
-              click_link "Te koop"
-            end
-            expect(page).to have_content("Je advertentie staat nu te koop")
+            links_to_state "Te koop", "Je advertentie staat nu te koop"
           end
-
           it "links to reserved" do
-            expect(page).to_not have_selector("span", text: /gereserveerd/i)
-            within "#author-options" do
-              click_link "Gereserveerd"
-            end
-            expect(page).to have_content("Je advertentie is gereserveerd")
+            links_to_state "Gereserveerd", "Je advertentie is gereserveerd"
           end
         end # end of context sold
       end # end of describe states
