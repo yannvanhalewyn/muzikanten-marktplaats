@@ -26,4 +26,5 @@ coverage/
 solr/test
 solr/development
 solr/default/data
+solr/pids
 /log/*.log.lck

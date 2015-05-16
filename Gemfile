@@ -45,9 +45,6 @@ gem 'mini_magick', '~> 4.2.3'
 
 # search engine
 gem 'sunspot_rails'
-group :development do
-  gem 'sunspot_solr'
-end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +57,10 @@ group :development, :test do
   gem 'spring', '~> 1.3.6'
   gem 'rspec-rails', '~> 3.2.1'
   gem 'factory_girl_rails', '~> 4.5.0'
+
+  # Solr
+  gem 'sunspot_solr', '~> 2.2.0'
+  gem 'sunspot_matchers', '~> 2.2.0.1'
 end
 
 group :test do
@@ -69,4 +70,5 @@ group :test do
   gem 'database_cleaner'
   gem 'orderly', '~> 0.0.2'
   gem 'simplecov', :require => false
+  # gem 'sunspot-rails-tester', '~> 1.0.0'
 end

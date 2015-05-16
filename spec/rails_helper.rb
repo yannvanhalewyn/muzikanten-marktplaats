@@ -16,6 +16,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
 
 ActiveRecord::Migration.maintain_test_schema!
 
+# $original_sunspot_session = Sunspot.session
+
 RSpec.configure do |config|
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -81,6 +83,16 @@ RSpec.configure do |config|
     end
   end
 
+  # =====================
+  # Sunspot Spec stubbing
+  # =====================
+  # config.before do
+  #   Sunspot.session = Sunspot::Rails::StubSessionProxy.new($original_sunspot_session)
+  # end
 
-
+  # config.before :each, solr: true do
+  #   Sunspot::Rails::Tester.start_original_sunspot_session
+  #   Sunspot.session = $original_sunspot_session
+  #   Sunspot.remove_all!
+  # end
 end

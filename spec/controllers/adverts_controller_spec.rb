@@ -33,6 +33,14 @@ RSpec.describe AdvertsController, type: :controller do
         xhr :get, :index
         expect(response.content_type).to eq(Mime::JS)
       end
+    end # end of context without search params
+
+    context "search params" do
+      it "performs a search for matching comment text" do
+        get :index, {search: "ibanez"}
+        expect(Sunspot.session).to be_a_search_for(Advert)
+        expect(Sunspot.session).to have_search_params(:fulltext, "ibanez")
+      end
     end
   end
 

@@ -9,11 +9,14 @@ class AdvertsController < ApplicationController
 
 
   def index
-    @search = Advert.search do
-      fulltext params[:search]
+    if params[:search]
+      @search = Advert.search do
+        fulltext params[:search]
+      end
+      @adverts = @search.results
+    else
+      @adverts = Advert.paginate(page: params[:page], per_page: 10).order("created_at DESC")
     end
-    @adverts = @search.results
-    # @adverts = Advert.paginate(page: params[:page], per_page: 10).order("created_at DESC")
 
     respond_to do |wants|
       wants.html  # render adverts/index.html.erb

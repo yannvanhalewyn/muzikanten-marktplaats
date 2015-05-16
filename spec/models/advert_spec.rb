@@ -5,6 +5,8 @@ RSpec.describe Advert, type: :model do
   let(:advert) { create(:advert) }
   it { should belong_to(:user) }
   it { should have_many(:images) }
+  it { should have_searchable_field(:title) }
+  it { should have_searchable_field(:description) }
 
   describe "instantiation" do
     it "persists to the database" do

@@ -28,6 +28,6 @@ class Advert < ActiveRecord::Base
   # ======
   searchable do
     text :title, boost: 3
-    :description
+    text :description
   end
 end
