@@ -36,7 +36,7 @@ RSpec.describe AdvertsController, type: :controller do
     end # end of context without search params
 
     context "search params" do
-      it "performs a search for matching comment text" do
+      it "performs a search for matching title or description" do
         get :index, {search: "ibanez"}
         expect(Sunspot.session).to be_a_search_for(Advert)
         expect(Sunspot.session).to have_search_params(:fulltext, "ibanez")

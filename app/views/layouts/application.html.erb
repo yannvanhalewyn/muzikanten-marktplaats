@@ -12,6 +12,7 @@
 
 <%= link_to "HOME", root_path %>
 
+<!-- User widget -->
 <div class="user-widget">
   <% if current_user %>
     <%= t("user-widget.welcome") %> <strong><%= current_user.name %></strong>!
@@ -19,10 +20,20 @@
       <img src="<%= current_user.image %>">
     <% end %>
     <%= link_to t("user-widget.log-out"), signout_path, id: "sign_out", class:"btn" %>
+    <%= link_to t("adverts.new"), new_advert_path, class: "btn btn-primary" %>
   <% else %>
     <%= link_to t('user-widget.log-in-fb'), "/auth/facebook", id: "sign_in", class: "btn" %>
   <% end %>
 </div>
+
+<!-- Search field -->
+<%= form_tag("/adverts", method: "get") do %>
+  <%= text_field_tag :search, "", id: "search-field",
+    placeholder: t('adverts.listing.search') %>
+  <%= submit_tag t('adverts.listing.search'), id: "search-button"  %>
+<% end %>
+<%= "#{t('adverts.listing.search-results-for')} '#{@searchterm}'" if @searchterm %>
+
 
 <div class="container">
   <%= yield %>

@@ -90,5 +90,5 @@ describe "adverts/index" do
       render partial: "advert", locals: { advert: advert }
       expect(rendered).to_not have_content /te koop/i
     end
-  end
+  end # end of describe advert-listings
 end

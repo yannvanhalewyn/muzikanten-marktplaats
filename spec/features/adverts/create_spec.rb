@@ -7,7 +7,7 @@ RSpec.feature "creating new adverts", type: :feature do
     it "doesn't show a form and redirects to root path" do
       expect(current_path).to eq(root_path)
       #might have to specify selector a bit more
-      expect(page).to_not have_selector('form')
+      expect(page).to_not have_selector('form#new_advert')
     end
     it "displays the error message" do
       expect(page).to have_content(/daarvoor moet je ingelogd zijn/i)
@@ -22,7 +22,7 @@ RSpec.feature "creating new adverts", type: :feature do
     def visit_new_adverts_and_fill_in_form(options={})
       visit "/adverts"
       click_link "Plaats Advertentie!"
-      expect(page).to have_selector('form')
+      expect(page).to have_selector('form#new_advert')
 
       options[:title] ||= "A valid title"
       options[:description] ||= "A valid description"
@@ -36,7 +36,7 @@ RSpec.feature "creating new adverts", type: :feature do
     describe "shows a form" do
       it "with necessary fields" do
         visit new_advert_path
-        expect(page).to have_selector('form')
+        expect(page).to have_selector('form#new_advert')
         expect(page).to have_selector('input#advert_title')
         expect(page).to have_selector('textarea#advert_description')
         expect(page).to have_selector('input#advert_price')

@@ -10,6 +10,7 @@ class AdvertsController < ApplicationController
 
   def index
     if params[:search]
+      @searchterm = params[:search]
       @search = Advert.search do
         fulltext params[:search]
       end

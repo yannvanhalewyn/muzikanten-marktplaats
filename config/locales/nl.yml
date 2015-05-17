@@ -25,6 +25,8 @@ nl:
       ago: "geleden"
       comments: "reactie(s)"
       no-comments: "geen reacties"
+      search: "Zoek"
+      search-results-for: "Zoekresultaten voor"
     state:
       for_sale: "Te koop"
       reserved: "Gereserveerd"

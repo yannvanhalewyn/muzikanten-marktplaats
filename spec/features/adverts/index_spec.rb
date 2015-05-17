@@ -82,4 +82,13 @@ RSpec.feature "displaying adverts", type: :feature do
                                    text: /plaats advertentie/i)
     end
   end
+
+  describe "search field" do
+    it "sends a get request with search params" do
+      visit adverts_path
+      fill_in "search", with: "searchterm"
+      click_button "Zoek"
+      expect(page).to have_content "Zoekresultaten voor 'searchterm'"
+    end
+  end
 end
