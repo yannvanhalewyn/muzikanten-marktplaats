@@ -1,8 +1,13 @@
 <h1><%= t("adverts.title") %></h1>
-<ul id="adverts-listings">
-  <%= render @adverts %>
-</ul>
 
-<div id="infinite-scrolling">
-  <%= will_paginate %>
-</div>
+<% if @adverts.empty? && @searchterm %>
+  <p><%= t('adverts.listing.search-no-results') %></p>
+<% else %>
+  <ul id="adverts-listings">
+    <%= render @adverts %>
+  </ul>
+
+  <div id="infinite-scrolling">
+    <%= will_paginate %>
+  </div>
+<% end %>

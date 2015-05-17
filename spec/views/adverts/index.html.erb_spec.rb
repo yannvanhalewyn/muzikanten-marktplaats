@@ -91,4 +91,13 @@ describe "adverts/index" do
       expect(rendered).to_not have_content /te koop/i
     end
   end # end of describe advert-listings
+
+  describe "searched adverts" do
+    it "Displays a message if no matching queries" do
+      assign(:searchterm, "A query")
+      assign(:adverts, [])
+      render
+      expect(rendered).to have_content("Er zijn geen advertenties gevonden.")
+    end
+  end
 end

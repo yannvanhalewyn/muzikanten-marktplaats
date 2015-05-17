@@ -27,6 +27,7 @@ nl:
       no-comments: "geen reacties"
       search: "Zoek"
       search-results-for: "Zoekresultaten voor"
+      search-no-results: "Er zijn geen advertenties gevonden."
     state:
       for_sale: "Te koop"
       reserved: "Gereserveerd"

@@ -24,6 +24,9 @@ fr:
       ago: ""
       comments: "commentaire(s)"
       no-comments: "pas de commentaires"
+      search: "Cherchez"
+      search-results-for: "Résultats pour"
+      search-no-results: "Nous n'avons pas trouvés d'annonces."
     state:
       for_sale: "A vendre"
       reserved: "Réservé"
